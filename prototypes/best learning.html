@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperEdu_isimg · Excellence Académique & Développement Personnel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        .app-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(180deg, #0b1120 0%, #111827 100%);
+            color: #e2e8f0;
+            padding: 28px 16px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #1e293b;
+            z-index: 100;
+            box-shadow: 4px 0 24px rgba(0,0,0,0.2);
+        }
+
+        .logo-section {
+            padding: 0 12px 28px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .logo-main {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            box-shadow: 0 8px 20px -4px #38bdf860;
+        }
+
+        .logo-text h2 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #bae6fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 20px 4px;
+        }
+
+        .nav-section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #475569;
+            margin: 28px 0 12px 16px;
+            font-weight: 700;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 16px;
+            margin: 4px 0;
+            border-radius: 14px;
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-item i {
+            width: 24px;
+            font-size: 20px;
+        }
+
+        .nav-item:hover {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #38bdf8;
+            border-left: 3px solid #38bdf8;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
+        }
+
+        .user-profile-mini {
+            padding: 24px 12px;
+            border-top: 1px solid #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .user-avatar {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+        }
+
+        .user-info h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .user-info p {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            margin-left: 300px;
+            padding: 28px 36px;
+            min-height: 100vh;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .page-title h1 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .page-title p {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .search-header {
+            background: white;
+            padding: 12px 22px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+
+        .search-header i {
+            color: #64748b;
+        }
+
+        .search-header input {
+            border: none;
+            outline: none;
+            font-size: 15px;
+            width: 260px;
+            font-weight: 500;
+        }
+
+        .notification-badge {
+            background: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 20px;
+        }
+
+        .notification-badge:hover {
+            background: #0f172a;
+            color: white;
+        }
+
+        /* ===== PAGES ===== */
+        .page-container {
+            display: none;
+        }
+
+        .page-container.active-page {
+            display: block;
+        }
+
+        /* ===== DASHBOARD GRID ===== */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 28px;
+        }
+
+        /* ===== CATEGORY HEADER ===== */
+        .category-header {
+            background: linear-gradient(135deg, #0b1120 0%, #1e293b 100%);
+            border-radius: 28px;
+            padding: 36px;
+            color: white;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #38bdf820, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .category-header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-header p {
+            color: #94a3b8;
+            font-size: 16px;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-stats {
+            display: flex;
+            gap: 36px;
+            margin-top: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stat-item i {
+            font-size: 28px;
+            color: #38bdf8;
+        }
+
+        .stat-info h3 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .stat-info p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* ===== VIDEO FEED ===== */
+        .feed-section {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-card {
+            display: flex;
+            gap: 18px;
+            padding: 18px;
+            background: #fafcff;
+            border-radius: 20px;
+            border: 1px solid #eef2ff;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            background: white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            border-color: #cbd5e1;
+            transform: translateX(4px);
+        }
+
+        .video-thumbnail {
+            width: 150px;
+            height: 220px;
+            background: linear-gradient(145deg, #1e293b, #0b1120);
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 12px 24px -8px rgba(0,0,0,0.3);
+        }
+
+        .play-btn {
+            background: #38bdf8;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+            font-size: 20px;
+            box-shadow: 0 0 30px #38bdf8;
+        }
+
+        .video-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #0f172acc;
+            backdrop-filter: blur(8px);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #bae6fd;
+            border: 1px solid #38bdf840;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: #000000cc;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .video-details {
+            flex: 1;
+            padding: 8px 0;
+        }
+
+        .video-title {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .category-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .video-description {
+            color: #475569;
+            font-size: 14px;
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 24px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .video-stats i {
+            margin-right: 6px;
+            color: #38bdf8;
+        }
+
+        /* ===== RIGHT SIDEBAR ===== */
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+
+        .widget-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .widget-title i {
+            color: #38bdf8;
+        }
+
+        /* AI Widget */
+        .ai-widget {
+            background: linear-gradient(135deg, #0b1120 0%, #111827 100%);
+            color: white;
+            border: 1px solid #1e293b;
+        }
+
+        .ai-widget .widget-title {
+            color: white;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .ai-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .ai-message-box {
+            background: #1e293b;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .ai-message {
+            color: #e2e8f0;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .ai-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .ai-suggestion-chip {
+            background: #0f172a;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            color: #bae6fd;
+            cursor: pointer;
+            border: 1px solid #334155;
+            transition: 0.2s;
+        }
+
+        .ai-suggestion-chip:hover {
+            background: #38bdf8;
+            color: #0f172a;
+            border-color: #38bdf8;
+        }
+
+        .ai-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .ai-input input {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 40px;
+            padding: 12px 16px;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .ai-input input::placeholder {
+            color: #64748b;
+        }
+
+        .ai-input button {
+            background: #38bdf8;
+            border: none;
+            border-radius: 40px;
+            padding: 0 22px;
+            color: #0f172a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .ai-input button:hover {
+            background: #7dd3fc;
+        }
+
+        /* Collaboration Widget */
+        .collab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .collab-room {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            background: #f8fafc;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .room-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .room-icon {
+            width: 44px;
+            height: 44px;
+            background: #e0e7ff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4f46e5;
+        }
+
+        .room-details h4 {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .room-details p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .online-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .online-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .join-btn {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .join-btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        /* Psychology Widget */
+        .psy-session {
+            display: flex;
+            gap: 14px;
+            padding: 14px;
+            background: #fef3c7;
+            border-radius: 16px;
+            margin-bottom: 14px;
+            border: 1px solid #fde68a;
+        }
+
+        .psy-avatar {
+            width: 48px;
+            height: 48px;
+            background: #f59e0b;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .psy-details h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .psy-details p {
+            font-size: 13px;
+            color: #92400e;
+        }
+
+        .book-session-btn {
+            width: 100%;
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.2s;
+        }
+
+        .book-session-btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        /* ===== RESOURCE GRID ===== */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.25s;
+        }
+
+        .resource-card:hover {
+            box-shadow: 0 16px 32px -12px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            border-color: #38bdf8;
+        }
+
+        .resource-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e40af;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .resource-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .resource-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 12px 26px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 90px;
+            }
+            .logo-text, .nav-item span, .user-info, .nav-section-title {
+                display: none;
+            }
+            .nav-item {
+                justify-content: center;
+                padding: 16px;
+            }
+            .nav-item i {
+                margin: 0;
+            }
+            .main-content {
+                margin-left: 90px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- ===== SIDEBAR NAVIGATION ===== -->
+        <div class="sidebar">
+            <div class="logo-section">
+                <div class="logo-main">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h2>SuperEdu</h2>
+                        <span>ISIMG · Excellence</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <div class="nav-section-title">Principal</div>
+                <button class="nav-item active" data-page="pour-toi">
+                    <i class="fas fa-fire"></i>
+                    <span>Pour Toi</span>
+                </button>
+                <button class="nav-item" data-page="videos">
+                    <i class="fas fa-video"></i>
+                    <span>Toutes les Vidéos</span>
+                </button>
+                
+                <div class="nav-section-title">Domaines d'Expertise</div>
+                <button class="nav-item" data-page="dev-avance">
+                    <i class="fas fa-code"></i>
+                    <span>Dev Avancé</span>
+                </button>
+                <button class="nav-item" data-page="micro-macro">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Micro & Macroéconomie</span>
+                </button>
+                <button class="nav-item" data-page="pensee-critique">
+                    <i class="fas fa-brain"></i>
+                    <span>Pensée Critique</span>
+                </button>
+                <button class="nav-item" data-page="leadership">
+                    <i class="fas fa-crown"></i>
+                    <span>Leadership & RH</span>
+                </button>
+                <button class="nav-item" data-page="pedagogie">
+                    <i class="fas fa-chalkboard-user"></i>
+                    <span>Pédagogie</span>
+                </button>
+                <button class="nav-item" data-page="competences">
+                    <i class="fas fa-star"></i>
+                    <span>Compétences Pro</span>
+                </button>
+                
+                <div class="nav-section-title">Espaces</div>
+                <button class="nav-item" data-page="collaboration">
+                    <i class="fas fa-users"></i>
+                    <span>Collaboration</span>
+                </button>
+                <button class="nav-item" data-page="psychologue">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>Espace Psy</span>
+                </button>
+            </div>
+
+            <div class="user-profile-mini">
+                <div class="user-avatar">SK</div>
+                <div class="user-info">
+                    <h4>Sarah Karim</h4>
+                    <p>ISIMG · 2ème année</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="main-content">
+            <!-- ============================================= -->
+            <!-- PAGE: POUR TOI (Accueil Personnalisé) -->
+            <!-- ============================================= -->
+            <div class="page-container active-page" id="page-pour-toi">
+                <div class="content-header">
+                    <div class="page-title">
+                        <h1>Pour Toi <i class="fas fa-sparkles" style="color: #38bdf8;"></i></h1>
+                        <p>Recommandations personnalisées · Continue ta progression</p>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-header">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Rechercher un cours, une compétence...">
+                        </div>
+                        <div class="notification-badge">
+                            <i class="far fa-bell"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="feed-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-clock" style="color: #38bdf8;"></i> Vidéos recommandées pour toi</h2>
+                            <span style="color: #38bdf8; cursor: pointer;">Voir tout <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                        <div class="video-grid">
+                            <!-- Vidéo 1 -->
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="video-badge"><i class="fas fa-flask"></i> Application Réelle</div>
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">4:32</div>
+                                </div>
+                                <div class="video-details">
+                                    <div class="video-title">Design Pattern Observer en Projet Réel</div>
+                                    <div class="video-meta">
+                                        <span><i class="fas fa-user"></i> Dr. Amine Ben Ali</span>
+                                        <span class="category-badge">Dev Avancé</span>
+                                    </div>
+                                    <div class="video-description">
+                                        Implémentation du pattern Observer dans une application de notifications temps réel. Guide projet complet inclus.
+                                    </div>
+                                    <div class="video-stats">
+                                        <span><i class="fas fa-eye"></i> 2.4k vues</span>
+                                        <span><i class="fas fa-heart"></i> 342</span>
+                                        <span><i class="fas fa-comment"></i> 28</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Vidéo 2 -->
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="video-badge"><i class="fas fa-chart-pie"></i> Macroéconomie</div>
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">6:15</div>
+                                </div>
+                                <div class="video-details">
+                                    <div class="video-title">Politique Monétaire et Inflation : Cas Pratique</div>
+                                    <div class="video-meta">
+                                        <span><i class="fas fa-user"></i> Pr. Leila Mansour</span>
+                                        <span class="category-badge">Macroéconomie</span>
+                                    </div>
+                                    <div class="video-description">
+                                        Analyse des décisions de la BCE face à l'inflation. Exemples concrets et impact sur l'économie tunisienne.
+                                    </div>
+                                    <div class="video-stats">
+                                        <span><i class="fas fa-eye"></i> 1.8k vues</span>
+                                        <span><i class="fas fa-heart"></i> 256</span>
+                                        <span><i class="fas fa-comment"></i> 34</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Vidéo 3 -->
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="video-badge"><i class="fas fa-users"></i> Leadership</div>
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">5:48</div>
+                                </div>
+                                <div class="video-details">
+                                    <div class="video-title">Gestion d'Équipe Agile : Méthode Scrum Avancée</div>
+                                    <div class="video-meta">
+                                        <span><i class="fas fa-user"></i> M. Karim Jebali</span>
+                                        <span class="category-badge">Leadership</span>
+                                    </div>
+                                    <div class="video-description">
+                                        Techniques de facilitation et résolution de conflits dans les équipes agiles. Retour d'expérience sur 5 projets.
+                                    </div>
+                                    <div class="video-stats">
+                                        <span><i class="fas fa-eye"></i> 3.2k vues</span>
+                                        <span><i class="fas fa-heart"></i> 489</span>
+                                        <span><i class="fas fa-comment"></i> 52</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-sidebar">
+                        <!-- Widget IA -->
+                        <div class="widget ai-widget">
+                            <div class="ai-header">
+                                <div class="ai-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: white; margin-bottom: 4px;">SuperBot IA</h3>
+                                    <p style="color: #94a3b8; font-size: 13px;">Assistant pédagogique 24/7</p>
+                                </div>
+                            </div>
+                            <div class="ai-message-box">
+                                <div class="ai-message">
+                                    <i class="fas fa-graduation-cap" style="color: #38bdf8; margin-right: 8px;"></i>
+                                    Bonjour Sarah ! Je vois que tu travailles sur les Design Patterns. Veux-tu que je t'explique le Pattern Observer ou que je t'aide avec ton projet ?
+                                </div>
+                                <div class="ai-suggestions">
+                                    <span class="ai-suggestion-chip" onclick="alert('SuperBot: Le Pattern Observer permet de créer une relation un-à-plusieurs...')">
+                                        <i class="fas fa-question"></i> Explique Observer
+                                    </span>
+                                    <span class="ai-suggestion-chip" onclick="alert('SuperBot: Je génère une fiche de révision sur les Design Patterns...')">
+                                        <i class="fas fa-file"></i> Fiche Révision
+                                    </span>
+                                    <span class="ai-suggestion-chip" onclick="alert('SuperBot: Analysons ton code ensemble...')">
+                                        <i class="fas fa-code"></i> Debug Code
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ai-input">
+                                <input type="text" placeholder="Pose ta question à SuperBot...">
+                                <button onclick="alert('SuperBot: Je traite votre question...')"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Widget Collaboration -->
+                        <div class="widget">
+                            <div class="widget-title">
+                                <i class="fas fa-users"></i>
+                                <span>Espaces Collaboration Actifs</span>
+                            </div>
+                            <div class="collab-list">
+                                <div class="collab-room">
+                                    <div class="room-info">
+                                        <div class="room-icon">
+                                            <i class="fas fa-laptop-code"></i>
+                                        </div>
+                                        <div class="room-details">
+                                            <h4>Projet Architecture Logicielle</h4>
+                                            <p>8 étudiants · Dr. Ben Ali</p>
+                                        </div>
+                                    </div>
+                                    <div class="online-indicator">
+                                        <span class="online-dot"></span>
+                                        <span style="font-size: 12px; color: #64748b;">4 en ligne</span>
+                                    </div>
+                                    <button class="join-btn" onclick="alert('Rejoindre la session collaboration...')">Rejoindre</button>
+                                </div>
+                                <div class="collab-room">
+                                    <div class="room-info">
+                                        <div class="room-icon">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </div>
+                                        <div class="room-details">
+                                            <h4>Révision Macroéconomie</h4>
+                                            <p>12 étudiants · Pr. Mansour</p>
+                                        </div>
+                                    </div>
+                                    <div class="online-indicator">
+                                        <span class="online-dot"></span>
+                                        <span style="font-size: 12px; color: #64748b;">7 en ligne</span>
+                                    </div>
+                                    <button class="join-btn" onclick="alert('Rejoindre la session révision...')">Rejoindre</button>
+                                </div>
+                            </div>
+                            <button class="btn-primary" style="width: 100%; margin-top: 16px;" onclick="alert('Créer un nouvel espace de collaboration...')">
+                                <i class="fas fa-plus"></i> Créer un espace
+                            </button>
+                        </div>
+
+                        <!-- Widget Psychologue -->
+                        <div class="widget">
+                            <div class="widget-title">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Espace Bien-être & Psy</span>
+                            </div>
+                            <div class="psy-session">
+                                <div class="psy-avatar">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div class="psy-details">
+                                    <h4>Dr. Amel Driss</h4>
+                                    <p>Psychologue clinicienne</p>
+                                    <p style="margin-top: 8px;"><i class="far fa-clock"></i> Prochain créneau : Aujourd'hui 16h</p>
+                                </div>
+                            </div>
+                            <div class="psy-session" style="background: #e0e7ff; border-color: #c7d2fe;">
+                                <div class="psy-avatar" style="background: #6366f1;">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="psy-details">
+                                    <h4>Groupe de Parole Étudiants</h4>
+                                    <p style="color: #3730a3;">Gestion du stress des examens</p>
+                                    <p style="margin-top: 8px;"><i class="far fa-calendar"></i> Mercredi 18h · 6 participants</p>
+                                </div>
+                            </div>
+                            <button class="book-session-btn" onclick="alert('Prendre rendez-vous avec un psychologue...')">
+                                <i class="far fa-calendar-check"></i> Réserver une séance
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: DÉVELOPPEMENT AVANCÉ -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-dev-avance">
+                <div class="category-header">
+                    <h1><i class="fas fa-code" style="margin-right: 16px;"></i> Développement Avancé</h1>
+                    <p>Architecture logicielle, Design Patterns, Microservices, DevOps et Cloud Computing</p>
+                    <div class="category-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-video"></i>
+                            <div class="stat-info">
+                                <h3>47</h3>
+                                <p>Vidéos courtes</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <div class="stat-info">
+                                <h3>12</h3>
+                                <p>Projets Guidés</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <div class="stat-info">
+                                <h3>234</h3>
+                                <p>Apprenants</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-cubes"></i></div>
+                        <h3>Design Patterns Complets</h3>
+                        <p>Maîtrisez les 23 patterns du Gang of Four avec exemples en Java et TypeScript. Guide PDF inclus.</p>
+                        <div class="resource-meta">
+                            <span class="badge"><i class="fas fa-star" style="color: #fbbf24;"></i> 4.9 (128 avis)</span>
+                            <button class="btn-primary" onclick="alert('Accès au cours Design Patterns...')">Commencer</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-cloud"></i></div>
+                        <h3>Microservices & Cloud Native</h3>
+                        <p>Architecture microservices avec Spring Boot, Docker, Kubernetes et déploiement sur AWS.</p>
+                        <div class="resource-meta">
+                            <span class="badge"><i class="fas fa-fire"></i> Projet Pratique</span>
+                            <button class="btn-primary" onclick="alert('Accès au cours Microservices...')">Explorer</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Sécurité Applicative Avancée</h3>
+                        <p>OAuth 2.0, JWT, prévention des failles OWASP Top 10 et bonnes pratiques de sécurisation.</p>
+                        <div class="resource-meta">
+                            <span class="badge"><i class="fas fa-clock"></i> 6h de contenu</span>
+                            <button class="btn-primary" onclick="alert('Accès au cours Sécurité...')">Apprendre</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: MICRO & MACROÉCONOMIE -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-micro-macro">
+                <div class="category-header">
+                    <h1><i class="fas fa-chart-line" style="margin-right: 16px;"></i> Micro & Macroéconomie</h1>
+                    <p>Comprendre les mécanismes économiques, politiques monétaires et analyses de marchés</p>
+                    <div class="category-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-video"></i>
+                            <div class="stat-info">
+                                <h3>38</h3>
+                                <p>Vidéos explicatives</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-newspaper"></i>
+                            <div class="stat-info">
+                                <h3>24</h3>
+                                <p>Cas d'Études Réels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-balance-scale"></i></div>
+                        <h3>Offre et Demande : Applications</h3>
+                        <p>Analyse des élasticités, équilibre de marché et applications sur le marché tunisien.</p>
+                        <div class="resource-meta">
+                            <span class="badge">Microéconomie</span>
+                            <button class="btn-primary" onclick="alert('Accès au cours...')">Étudier</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-bank"></i></div>
+                        <h3>Politiques Monétaires Comparées</h3>
+                        <p>BCE, FED, BCT : étude comparative des politiques face à l'inflation mondiale.</p>
+                        <div class="resource-meta">
+                            <span class="badge">Macroéconomie</span>
+                            <button class="btn-primary" onclick="alert('Accès au cours...')">Explorer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: PENSÉE CRITIQUE -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-pensee-critique">
+                <div class="category-header">
+                    <h1><i class="fas fa-brain" style="margin-right: 16px;"></i> Pensée Critique</h1>
+                    <p>Développez votre capacité d'analyse, de raisonnement logique et de résolution de problèmes complexes</p>
+                </div>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-search"></i></div>
+                        <h3>Analyse des Arguments</h3>
+                        <p>Identifier les sophismes, construire une argumentation solide et évaluer les preuves.</p>
+                        <div class="resource-meta">
+                            <span class="badge">Atelier Pratique</span>
+                            <button class="btn-primary" onclick="alert('Accès au module...')">Développer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: LEADERSHIP & RH -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-leadership">
+                <div class="category-header">
+                    <h1><i class="fas fa-crown" style="margin-right: 16px;"></i> Leadership & Ressources Humaines</h1>
+                    <p>Gestion d'équipe, techniques RH, résolution de conflits et développement du leadership</p>
+                </div>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3>Leadership Situationnel</h3>
+                        <p>Adapter son style de management selon la maturité de l'équipe et les situations.</p>
+                        <div class="resource-meta">
+                            <button class="btn-primary" onclick="alert('Accès au cours Leadership...')">Se former</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>Gestion des Conflits</h3>
+                        <p>Techniques de médiation et résolution de conflits en milieu professionnel.</p>
+                        <div class="resource-meta">
+                            <button class="btn-primary" onclick="alert('Accès au cours...')">Apprendre</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: PÉDAGOGIE (Prioritaire) -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-pedagogie">
+                <div class="category-header">
+                    <h1><i class="fas fa-chalkboard-user" style="margin-right: 16px;"></i> Pédagogie d'Enseignement</h1>
+                    <p>Méthodes pédagogiques innovantes, ingénierie de formation et techniques d'animation</p>
+                    <div class="category-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <div class="stat-info">
+                                <h3>Prioritaire</h3>
+                                <p>Pour enseignants ISIMG</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-people-arrows"></i></div>
+                        <h3>Classe Inversée</h3>
+                        <p>Méthodologie complète pour mettre en place la classe inversée dans l'enseignement supérieur.</p>
+                        <div class="resource-meta">
+                            <span class="badge"><i class="fas fa-video"></i> 8 vidéos</span>
+                            <button class="btn-primary" onclick="alert('Accès formation pédagogique...')">Explorer</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <h3>Apprentissage par Problèmes</h3>
+                        <p>Guide complet pour concevoir des situations d'apprentissage par problèmes (PBL).</p>
+                        <div class="resource-meta">
+                            <span class="badge">Guide Projet Inclus</span>
+                            <button class="btn-primary" onclick="alert('Accès au guide PBL...')">Consulter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: COMPÉTENCES PROFESSIONNELLES -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-competences">
+                <div class="category-header">
+                    <h1><i class="fas fa-briefcase" style="margin-right: 16px;"></i> Compétences Professionnelles</h1>
+                    <p>Entrepreneuriat, créativité, compétences numériques et sociales</p>
+                </div>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Créativité & Innovation</h3>
+                        <p>Techniques de design thinking et résolution créative de problèmes.</p>
+                        <button class="btn-primary" style="margin-top: 16px;" onclick="alert('Développer sa créativité...')">Commencer</button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h3>Gestion de Projet</h3>
+                        <p>Méthodologies Agile, Scrum, Kanban et outils de gestion de projet.</p>
+                        <button class="btn-primary" style="margin-top: 16px;" onclick="alert('Formation gestion de projet...')">Se former</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: ESPACE COLLABORATION -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-collaboration">
+                <div class="category-header">
+                    <h1><i class="fas fa-users" style="margin-right: 16px;"></i> Espace Collaboration</h1>
+                    <p>Étudiants ↔ Étudiants · Étudiants ↔ Enseignants · Enseignants ↔ Enseignants</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+                    <div class="widget" style="text-align: center;">
+                        <i class="fas fa-user-graduate" style="font-size: 48px; color: #38bdf8; margin-bottom: 16px;"></i>
+                        <h3>Étudiants + Étudiants</h3>
+                        <p style="color: #64748b; margin: 12px 0;">Groupes d'étude, partage de notes, projets collaboratifs</p>
+                        <button class="btn-primary" onclick="alert('Explorer les groupes étudiants...')">Rejoindre</button>
+                    </div>
+                    <div class="widget" style="text-align: center;">
+                        <i class="fas fa-chalkboard" style="font-size: 48px; color: #38bdf8; margin-bottom: 16px;"></i>
+                        <h3>Étudiants + Enseignants</h3>
+                        <p style="color: #64748b; margin: 12px 0;">Sessions Q/R, mentorat, suivi de projets</p>
+                        <button class="btn-primary" onclick="alert('Voir les sessions avec enseignants...')">Participer</button>
+                    </div>
+                    <div class="widget" style="text-align: center;">
+                        <i class="fas fa-user-tie" style="font-size: 48px; color: #38bdf8; margin-bottom: 16px;"></i>
+                        <h3>Enseignants + Enseignants</h3>
+                        <p style="color: #64748b; margin: 12px 0;">Partage de pratiques pédagogiques, co-création de cours</p>
+                        <button class="btn-primary" onclick="alert('Espace enseignants...')">Accéder</button>
+                    </div>
+                </div>
+
+                <div class="feed-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-door-open"></i> Salles de Collaboration Actives</h2>
+                    </div>
+                    <div class="collab-list">
+                        <div class="collab-room">
+                            <div class="room-info">
+                                <div class="room-icon"><i class="fas fa-code-branch"></i></div>
+                                <div class="room-details">
+                                    <h4>Projet DevOps · Pipeline CI/CD</h4>
+                                    <p>6 participants · Animateur: M. Karim</p>
+                                </div>
+                            </div>
+                            <button class="join-btn" onclick="alert('Rejoindre la salle...')">Rejoindre</button>
+                        </div>
+                        <div class="collab-room">
+                            <div class="room-info">
+                                <div class="room-icon"><i class="fas fa-calculator"></i></div>
+                                <div class="room-details">
+                                    <h4>TD Macroéconomie · Série 3</h4>
+                                    <p>15 participants · Dr. Leila</p>
+                                </div>
+                            </div>
+                            <button class="join-btn" onclick="alert('Rejoindre la salle...')">Rejoindre</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: ESPACE PSYCHOLOGUE -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-psychologue">
+                <div class="category-header" style="background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);">
+                    <h1><i class="fas fa-hand-holding-heart" style="margin-right: 16px;"></i> Espace Psychologue & Bien-être</h1>
+                    <p>Soutien psychologique pour étudiants et enseignants · Séances individuelles et collectives</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div class="widget">
+                        <div class="widget-title">
+                            <i class="fas fa-user-md"></i>
+                            <span>Psychologues Disponibles</span>
+                        </div>
+                        <div class="psy-session">
+                            <div class="psy-avatar"><i class="fas fa-female"></i></div>
+                            <div class="psy-details">
+                                <h4>Dr. Amel Driss</h4>
+                                <p>Spécialiste anxiété et stress académique</p>
+                                <button class="btn-primary" style="margin-top: 12px;" onclick="alert('Prendre RDV avec Dr. Amel...')">Prendre RDV</button>
+                            </div>
+                        </div>
+                        <div class="psy-session">
+                            <div class="psy-avatar"><i class="fas fa-male"></i></div>
+                            <div class="psy-details">
+                                <h4>Dr. Sami Trabelsi</h4>
+                                <p>Orientation et développement personnel</p>
+                                <button class="btn-primary" style="margin-top: 12px;" onclick="alert('Prendre RDV avec Dr. Sami...')">Prendre RDV</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="widget-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Séances Collectives</span>
+                        </div>
+                        <div class="session-list">
+                            <div class="session-card">
+                                <div>
+                                    <span class="session-time">Lundi 18h</span>
+                                    <h4>Gestion du Stress des Examens</h4>
+                                    <p>12 places disponibles · Dr. Amel</p>
+                                </div>
+                                <button class="join-btn" onclick="alert('Inscription à la séance...')">S'inscrire</button>
+                            </div>
+                            <div class="session-card">
+                                <div>
+                                    <span class="session-time">Jeudi 14h</span>
+                                    <h4>Confiance en Soi et Prise de Parole</h4>
+                                    <p>8 places disponibles · Dr. Sami</p>
+                                </div>
+                                <button class="join-btn" onclick="alert('Inscription à la séance...')">S'inscrire</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget" style="margin-top: 24px;">
+                    <div class="widget-title">
+                        <i class="fas fa-book-open"></i>
+                        <span>Ressources Bien-être</span>
+                    </div>
+                    <div class="resource-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="resource-card">
+                            <i class="fas fa-spa" style="font-size: 32px; color: #38bdf8;"></i>
+                            <h4>Méditation Guidée</h4>
+                            <p>5 minutes pour se recentrer</p>
+                        </div>
+                        <div class="resource-card">
+                            <i class="fas fa-bed" style="font-size: 32px; color: #38bdf8;"></i>
+                            <h4>Hygiène de Sommeil</h4>
+                            <p>Conseils pour mieux dormir</p>
+                        </div>
+                        <div class="resource-card">
+                            <i class="fas fa-heart" style="font-size: 32px; color: #38bdf8;"></i>
+                            <h4>Gestion des Émotions</h4>
+                            <p>Techniques de régulation émotionnelle</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- PAGE: TOUTES LES VIDÉOS -->
+            <!-- ============================================= -->
+            <div class="page-container" id="page-videos">
+                <div class="content-header">
+                    <div class="page-title">
+                        <h1><i class="fas fa-video"></i> Toutes les Vidéos Courtes</h1>
+                        <p>Explications, applications réelles, cours avancés et guides projets</p>
+                    </div>
+                </div>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <div class="video-badge"><i class="fas fa-flask"></i> Application Réelle</div>
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                            <div class="video-duration">3:45</div>
+                        </div>
+                        <div class="video-details">
+                            <div class="video-title">Microservices : Communication asynchrone avec RabbitMQ</div>
+                            <div class="video-meta">
+                                <span>Dr. Amine Ben Ali</span>
+                                <span class="category-badge">Dev Avancé</span>
+                            </div>
+                            <div class="video-description">
+                                Implémentation d'une architecture événementielle avec RabbitMQ dans un projet e-commerce.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <div class="video-badge"><i class="fas fa-chart-bar"></i> Explication</div>
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                            <div class="video-duration">5:20</div>
+                        </div>
+                        <div class="video-details">
+                            <div class="video-title">Le PIB : Définition, Calcul et Limites</div>
+                            <div class="video-meta">
+                                <span>Pr. Leila Mansour</span>
+                                <span class="category-badge">Macroéconomie</span>
+                            </div>
+                            <div class="video-description">
+                                Comprendre le Produit Intérieur Brut avec des exemples concrets de l'économie tunisienne.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation System
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const pages = document.querySelectorAll('.page-container');
+
+            function switchPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active-page');
+                });
+                
+                // Show selected page
+                const targetPage = document.getElementById(`page-${pageId}`);
+                if (targetPage) {
+                    targetPage.classList.add('active-page');
+                }
+
+                // Update active state in navigation
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.dataset.page === pageId) {
+                        item.classList.add('active');
+                    }
+                });
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+
+            // Add click handlers to all nav items
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.dataset.page;
+                    if (pageId) {
+                        switchPage(pageId);
+                    }
+                });
+            });
+
+            // Handle initial page if hash exists
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    switchPage(hash);
+                }
+            }
+        });
+
+        // Simuler des interactions
+        function showMessage(message) {
+            alert(message);
+        }
+
+        // Animation au scroll (optionnel)
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.content-header');
+            if (header && window.scrollY > 50) {
+                header.style.opacity = '0.95';
+            }
+        });
+    </script>
+</body>
+</html>
