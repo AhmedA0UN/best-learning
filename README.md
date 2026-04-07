@@ -1,7 +1,5 @@
 # best-learning
 
-<<<<<<< HEAD
-
 
 \# 📚 Plan d’amélioration du système éducatif
 
