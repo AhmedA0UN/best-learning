@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperEdu_isimg · Plateforme d'Excellence Académique</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'%3E%3Cpath d='M12 3L1 9l11 6 11-6-11-6zm0 12.5L4.5 13v4l7.5 4 7.5-4v-4l-7.5 4z'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #38bdf8;
+            --accent-light: #7dd3fc;
+            --accent-purple: #a78bfa;
+            --accent-pink: #f472b6;
+            --accent-green: #34d399;
+            --accent-orange: #fb923c;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --border-light: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+
+        .app-wrapper { display: flex; min-height: 100vh; }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(165deg, #0b1120 0%, #111827 100%);
+            color: #e2e8f0;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid rgba(56, 189, 248, 0.1);
+            z-index: 100;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .logo-section { padding: 0 12px 24px; border-bottom: 1px solid rgba(56, 189, 248, 0.15); position: relative; }
+        .logo-section::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-purple)); border-radius: 3px; }
+        .logo-main { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .logo-icon { background: linear-gradient(135deg, var(--accent), var(--accent-purple)); width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; box-shadow: 0 8px 20px -4px rgba(56, 189, 248, 0.4); }
+        .logo-text h2 { font-size: 26px; font-weight: 800; background: linear-gradient(135deg, #ffffff, #bae6fd); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -0.5px; }
+        .logo-text span { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+        .progress-overview { background: rgba(30, 41, 59, 0.5); border-radius: 16px; padding: 16px; margin-top: 16px; border: 1px solid rgba(56, 189, 248, 0.1); }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; color: var(--text-muted); }
+        .progress-bar { height: 6px; background: var(--secondary); border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 68%; background: linear-gradient(90deg, var(--accent), var(--accent-purple)); border-radius: 3px; }
+
+        .nav-menu { flex: 1; padding: 24px 4px; }
+        .nav-section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin: 28px 0 12px 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .nav-section-title i { font-size: 12px; color: var(--accent); }
+        .nav-item { display: flex; align-items: center; gap: 14px; padding: 13px 16px; margin: 4px 0; border-radius: 14px; color: #94a3b8; font-weight: 500; font-size: 15px; transition: var(--transition); cursor: pointer; border: none; background: transparent; width: 100%; text-align: left; }
+        .nav-item i { width: 24px; font-size: 20px; }
+        .nav-item:hover { background: var(--secondary); color: #e2e8f0; transform: translateX(4px); }
+        .nav-item:hover i { color: var(--accent); }
+        .nav-item.active { background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(167, 139, 250, 0.1)); color: var(--accent); border-left: 3px solid var(--accent); font-weight: 600; }
+        .nav-item .badge-new { margin-left: auto; background: var(--accent); color: var(--primary); padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+
+        .user-profile-mini { padding: 20px 12px; border-top: 1px solid rgba(56, 189, 248, 0.15); display: flex; align-items: center; gap: 14px; margin-top: auto; }
+        .user-avatar { width: 52px; height: 52px; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; color: white; position: relative; }
+        .user-avatar::after { content: ''; position: absolute; bottom: -2px; right: -2px; width: 14px; height: 14px; background: var(--success); border: 3px solid var(--primary); border-radius: 50%; }
+        .user-info h4 { color: white; font-size: 16px; font-weight: 600; }
+        .user-info p { color: var(--text-muted); font-size: 12px; }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content { flex: 1; margin-left: 320px; padding: 28px 36px; min-height: 100vh; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
+
+        .content-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .page-title h1 { font-size: 36px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.5px; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; }
+        .page-title h1 i { color: var(--accent); font-size: 32px; }
+        .page-title p { color: var(--text-secondary); font-weight: 500; font-size: 15px; }
+        .search-header { background: white; padding: 12px 22px; border-radius: 50px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); }
+        .search-header input { border: none; outline: none; font-size: 15px; width: 260px; font-weight: 500; }
+        .notification-badge { background: white; width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-light); cursor: pointer; font-size: 20px; position: relative; box-shadow: var(--shadow-sm); }
+
+        .page-container { display: none; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .page-container.active-page { display: block; }
+
+        /* Stats & Grids */
+        .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+        .stat-card { background: white; padding: 24px; border-radius: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); transition: var(--transition); }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .stat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .stat-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 24px; }
+        .stat-value { font-size: 32px; font-weight: 800; color: var(--text-primary); }
+        .stat-label { color: var(--text-muted); font-size: 14px; font-weight: 500; }
+
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 380px; gap: 28px; }
+        .feed-section { background: white; border-radius: 24px; padding: 28px; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .section-header h2 { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+
+        /* Video Cards */
+        .video-grid { display: flex; flex-direction: column; gap: 20px; }
+        .video-card { display: flex; gap: 20px; padding: 20px; background: var(--bg-primary); border-radius: 20px; border: 1px solid var(--border-light); cursor: pointer; transition: var(--transition); }
+        .video-card:hover { background: white; box-shadow: var(--shadow-lg); border-color: var(--accent-light); transform: translateX(6px); }
+        .video-thumbnail { width: 160px; height: 100px; background: linear-gradient(145deg, var(--secondary), var(--primary)); border-radius: 18px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; }
+        .play-btn { background: var(--accent); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 20px; }
+        .video-details { flex: 1; }
+        .video-title { font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+        .video-meta { display: flex; align-items: center; gap: 14px; color: var(--text-muted); font-size: 13px; margin-bottom: 8px; flex-wrap: wrap; }
+        .category-badge { background: linear-gradient(135deg, #dbeafe, #e0e7ff); color: #1e40af; padding: 4px 14px; border-radius: 30px; font-size: 12px; font-weight: 700; }
+        .video-description { color: var(--text-secondary); font-size: 14px; }
+
+        /* Right Sidebar Widgets */
+        .right-sidebar { display: flex; flex-direction: column; gap: 24px; }
+        .widget { background: white; border-radius: 24px; padding: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); }
+        .widget-title { font-weight: 700; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .widget-title i { color: var(--accent); }
+
+        /* Module intégré dans un widget */
+        .module-integrated { margin-top: 16px; }
+        .module-tabs-inline { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .tab-module-btn { background: var(--bg-secondary); border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 40px; font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .tab-module-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .module-tab-content { display: none; }
+        .module-tab-content.active { display: block; }
+
+        /* Quiz */
+        .quiz-question { font-weight: 600; margin-bottom: 16px; font-size: 1rem; }
+        .quiz-options label { display: block; margin-bottom: 10px; padding: 10px 14px; background: var(--bg-primary); border-radius: 14px; border: 1px solid var(--border-light); cursor: pointer; font-size: 14px; }
+        .quiz-feedback { margin-top: 16px; padding: 12px; border-radius: 14px; background: #f1f5f9; font-size: 13px; }
+
+        /* Student list */
+        .student-list { display: flex; flex-direction: column; gap: 12px; }
+        .student-card { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--bg-primary); border-radius: 16px; }
+        .student-info h4 { font-size: 15px; margin-bottom: 4px; }
+        .skills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+        .skill-tag { background: #e6edf8; padding: 2px 10px; border-radius: 30px; font-size: 11px; }
+
+        /* Simulation */
+        .simulate-form select, .simulate-form button { padding: 10px 16px; border-radius: 30px; border: 1px solid var(--border-light); margin: 8px 0; width: 100%; }
+        .result-card { margin-top: 16px; background: #eef6ff; padding: 16px; border-radius: 20px; }
+
+        /* Chat */
+        .chat-container { border: 1px solid var(--border-light); border-radius: 20px; overflow: hidden; }
+        .chat-messages { height: 240px; overflow-y: auto; padding: 16px; background: #f8fafc; }
+        .message { margin-bottom: 12px; display: flex; }
+        .message.bot { justify-content: flex-start; }
+        .message.user { justify-content: flex-end; }
+        .bubble { max-width: 80%; padding: 10px 14px; border-radius: 20px; background: white; box-shadow: var(--shadow-sm); font-size: 13px; }
+        .bot .bubble { background: #e9eff9; }
+        .user .bubble { background: var(--accent); color: white; }
+        .chat-input { display: flex; padding: 12px; background: white; border-top: 1px solid var(--border-light); }
+        .chat-input input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 40px; outline: none; font-size: 13px; }
+        .chat-input button { margin-left: 10px; padding: 0 18px; border-radius: 40px; background: var(--accent); color: var(--primary); border: none; font-weight: 600; cursor: pointer; }
+
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 13px; }
+        .btn-primary:hover { background: var(--accent); color: var(--primary); }
+        .btn-outline { background: transparent; border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 30px; cursor: pointer; }
+
+        footer { text-align: center; padding: 30px 0 20px; color: var(--text-muted); border-top: 1px solid var(--border-light); margin-top: 40px; }
+        @media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } .main-content { padding: 20px; } }
+        @media (max-width: 900px) { .sidebar { width: 90px; } .logo-text, .nav-item span, .user-info, .nav-section-title, .progress-overview { display: none; } .nav-item { justify-content: center; padding: 16px; } .main-content { margin-left: 90px; } .quick-stats { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+<div class="app-wrapper">
+    <div class="sidebar">
+        <div class="logo-section">
+            <div class="logo-main">
+                <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text"><h2>SuperEdu</h2><span>ISIMG · Excellence</span></div>
+            </div>
+            <div class="progress-overview">
+                <div class="progress-header"><span>Progression Globale</span><span>68%</span></div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <div class="nav-section-title"><i class="fas fa-star"></i><span>Principal</span></div>
+            <button class="nav-item active" data-page="pour-toi"><i class="fas fa-fire"></i><span>Pour Toi</span></button>
+            <div class="nav-section-title"><i class="fas fa-crown"></i><span>Domaines</span></div>
+            <button class="nav-item" data-page="dev-avance"><i class="fas fa-code"></i><span>Dev Avancé</span></button>
+            <button class="nav-item" data-page="micro-macro"><i class="fas fa-chart-line"></i><span>Micro & Macro</span></button>
+            <div class="nav-section-title"><i class="fas fa-robot"></i><span>Modules IA</span></div>
+            <button class="nav-item" data-page="modules-ia"><i class="fas fa-brain"></i><span>Modules Interactifs</span><span class="badge-new">NEW</span></button>
+        </div>
+        <div class="user-profile-mini">
+            <div class="user-avatar">SK</div>
+            <div class="user-info"><h4>Sarah Karim</h4><p>ISIMG · 2ème année</p></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        
+
+        <!-- Page Modules IA intégrés (fusion des 4 modules) -->
+        <div class="page-container" id="page-modules-ia">
+            <div class="content-header"><div class="page-title"><h1><i class="fas fa-brain"></i> Modules Interactifs</h1><p>Détection de lacunes · Échange de compétences · Simulation · Mentor IA</p></div></div>
+            <div class="widget" style="padding:28px;">
+                <div class="module-tabs-inline" id="moduleTabsInline">
+                    <button class="tab-module-btn active" data-module="lacunes">📘 Lacunes & Quiz</button>
+                    <button class="tab-module-btn" data-module="echange">🤝 Échange compétences</button>
+                    <button class="tab-module-btn" data-module="simulation">🚀 Simulation parcours</button>
+                    <button class="tab-module-btn" data-module="mentor">🤖 Mentor IA</button>
+                </div>
+
+                <!-- Module 1 : Lacunes -->
+                <div id="module-lacunes" class="module-tab-content active">
+                    <div style="margin-bottom:16px;"><select id="quizSubject" style="padding:8px 16px;border-radius:30px;"><option>Mathématiques</option><option>Physique</option><option>Informatique</option></select></div>
+                    <div id="quizArea">
+                        <div class="quiz-question" id="quizQuestion">Quelle est la dérivée de x² ?</div>
+                        <div class="quiz-options" id="quizOptions"></div>
+                        <button id="quizNextBtn" class="btn-primary" style="margin-top:12px;">Question suivante</button>
+                        <div id="quizFeedback" class="quiz-feedback" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- Module 2 : Échange -->
+                <div id="module-echange" class="module-tab-content">
+                    <div class="student-list">
+                        <div class="student-card"><div><h4>Sarah M. <span style="font-weight:normal;">(L2 Info)</span></h4><div class="skills"><span class="skill-tag">Python</span><span class="skill-tag">Java</span></div><p>Offre aide en algo – cherche aide BD</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
+                        <div class="student-card"><div><h4>Yacine B. <span style="font-weight:normal;">(L3 Physique)</span></h4><div class="skills"><span class="skill-tag">Mécanique</span><span class="skill-tag">Électromag</span></div><p>Propose mentorat – cherche maths</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
+                        <div class="student-card"><div><h4>Inès L. <span style="font-weight:normal;">(L1 Éco)</span></h4><div class="skills"><span class="skill-tag">Statistiques</span><span class="skill-tag">Excel</span></div><p>Cherche binôme pour tests d'hypothèses</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
+                    </div>
+                </div>
+
+                <!-- Module 3 : Simulation -->
+                <div id="module-simulation" class="module-tab-content">
+                    <div class="simulate-form">
+                        <select id="simDomain"><option>Informatique & IA</option><option>Ingénierie</option><option>Gestion & Finance</option></select>
+                        <select id="simSkill"><option>Analyse de données</option><option>Programmation</option><option>Communication</option></select>
+                        <button id="simulateBtnModule" class="btn-primary">Simuler mon parcours</button>
+                        <div id="simResultModule" class="result-card" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- Module 4 : Mentor IA -->
+                <div id="module-mentor" class="module-tab-content">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessagesModule"><div class="message bot"><div class="bubble">🤖 Salut ! Je suis ton mentor IA. Parle-moi de tes difficultés (stress, révision, orientation).</div></div></div>
+                        <div class="chat-input"><input type="text" id="chatInputModule" placeholder="Écris ton message..."><button id="chatSendModule">Envoyer</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Page Pour Toi -->
+        <div class="page-container active-page" id="page-pour-toi">
+            <div class="content-header">
+                <div class="page-title"><h1><i class="fas fa-sparkles"></i>Pour Toi</h1><p>Recommandations personnalisées · Continue ta progression</p></div>
+                <div class="search-header"><i class="fas fa-search"></i><input type="text" placeholder="Rechercher..."></div>
+            </div>
+            <div class="quick-stats">
+                <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-video"></i></div></div><div class="stat-value">47</div><div class="stat-label">Vidéos vues</div></div>
+                <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-clock"></i></div></div><div class="stat-value">128h</div><div class="stat-label">Apprentissage</div></div>
+                <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-trophy"></i></div></div><div class="stat-value">12</div><div class="stat-label">Certificats</div></div>
+                <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-users"></i></div></div><div class="stat-value">28</div><div class="stat-label">Pairs connectés</div></div>
+            </div>
+            <div class="dashboard-grid">
+                <div class="feed-section"><div class="section-header"><h2><i class="fas fa-clock"></i> Vidéos recommandées</h2></div>
+                    <div class="video-grid">
+                        <div class="video-card"><div class="video-thumbnail"><div class="play-btn"><i class="fas fa-play"></i></div></div><div class="video-details"><div class="video-title">Design Pattern Observer</div><div class="video-meta"><span class="category-badge">Dev Avancé</span></div><div class="video-description">Implémentation du pattern Observer dans une application de notifications.</div></div></div>
+                        <div class="video-card"><div class="video-thumbnail"><div class="play-btn"><i class="fas fa-play"></i></div></div><div class="video-details"><div class="video-title">Politique Monétaire et Inflation</div><div class="video-meta"><span class="category-badge">Macroéconomie</span></div><div class="video-description">Analyse des décisions de la BCE face à l'inflation.</div></div></div>
+                    </div>
+                </div>
+                <div class="right-sidebar">
+                    <div class="widget"><div class="widget-title"><i class="fas fa-robot"></i><span>Assistant IA</span></div><div class="ai-message-box" style="background:#eef2ff;padding:12px;border-radius:16px;"><p style="font-size:14px;">💬 Bonjour Sarah ! Besoin d'aide pour tes révisions ?</p></div></div>
+                    <div class="widget"><div class="widget-title"><i class="fas fa-hand-holding-heart"></i><span>Bien-être</span></div><p>Séance de méditation disponible à 16h.</p><button class="btn-primary" style="margin-top:12px;" onclick="showNotif('Réservation séance bien-être')">Réserver</button></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Pages simplifiées pour domaines -->
+        <div class="page-container" id="page-dev-avance"><div class="category-header" style="background:var(--primary);border-radius:28px;padding:32px;"><h1>Développement Avancé</h1><p>Design Patterns, Microservices, Cloud</p></div><div class="resource-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:24px;"><div class="widget"><h3>Design Patterns</h3><p>Maîtrisez les 23 patterns du Gang of Four.</p><button class="btn-primary" onclick="showNotif('Accès cours')">Commencer</button></div><div class="widget"><h3>Microservices</h3><p>Architecture avec Spring Boot, Docker.</p><button class="btn-primary" onclick="showNotif('Accès cours')">Explorer</button></div></div></div>
+        <div class="page-container" id="page-micro-macro"><div class="category-header" style="background:var(--primary);border-radius:28px;padding:32px;"><h1>Micro & Macroéconomie</h1><p>Offre/Demande, Politiques monétaires</p></div><div class="resource-grid"><div class="widget"><h3>Économétrie Appliquée</h3><button class="btn-primary" onclick="showNotif('Accès cours')">Étudier</button></div></div></div>
+        
+        <footer>© 2026 SuperEdu_isimg · Plateforme d'Excellence Académique · Modules IA intégrés</footer>
+    </div>
+</div>
+
+<script>
+    // Navigation
+    const pages = document.querySelectorAll('.page-container');
+    const navItems = document.querySelectorAll('.nav-item');
+    function switchPage(pageId) {
+        pages.forEach(p => p.classList.remove('active-page'));
+        document.getElementById(`page-${pageId}`)?.classList.add('active-page');
+        navItems.forEach(item => { item.classList.remove('active'); if(item.dataset.page === pageId) item.classList.add('active'); });
+        window.scrollTo(0,0);
+    }
+    navItems.forEach(item => item.addEventListener('click', () => { if(item.dataset.page) switchPage(item.dataset.page); }));
+
+    // Tabs des modules
+    const moduleBtns = document.querySelectorAll('.tab-module-btn');
+    const moduleContents = document.querySelectorAll('.module-tab-content');
+    moduleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const module = btn.dataset.module;
+            moduleBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            moduleContents.forEach(c => c.classList.remove('active'));
+            document.getElementById(`module-${module}`).classList.add('active');
+        });
+    });
+
+    // Quiz data
+    const quizData = [
+        { q: "Quelle est la dérivée de x² ?", opts: ["2x", "x", "x²", "2"], correct: 0 },
+        { q: "Combien vaut l'intégrale de 2x dx ?", opts: ["x² + C", "2x² + C", "x²", "2x"], correct: 0 },
+        { q: "Limite de sin(x)/x quand x→0 ?", opts: ["0", "1", "Infini", "N'existe pas"], correct: 1 }
+    ];
+    let qIndex = 0, qScore = 0, qFinished = false;
+    const qText = document.getElementById('quizQuestion');
+    const qOpts = document.getElementById('quizOptions');
+    const qNext = document.getElementById('quizNextBtn');
+    const qFeed = document.getElementById('quizFeedback');
+
+    function renderQuiz() {
+        if(qFinished) return;
+        const d = quizData[qIndex];
+        qText.innerText = d.q;
+        qOpts.innerHTML = d.opts.map((opt, i) => `<label><input type="radio" name="quizOpt" value="${i}"> ${opt}</label>`).join('');
+        qFeed.style.display = 'none';
+        qNext.innerText = (qIndex === quizData.length-1) ? 'Terminer' : 'Suivant';
+    }
+    function checkQuiz() {
+        const selected = document.querySelector('input[name="quizOpt"]:checked');
+        if(!selected) { alert("Choisis une réponse !"); return false; }
+        const isCorrect = parseInt(selected.value) === quizData[qIndex].correct;
+        if(isCorrect) qScore++;
+        let msg = isCorrect ? "✅ Bonne réponse !" : `❌ La bonne réponse était : ${quizData[qIndex].opts[quizData[qIndex].correct]}`;
+        qFeed.innerHTML = `${msg} Score: ${qScore}/${qIndex+1}`;
+        qFeed.style.display = 'block';
+        return true;
+    }
+    qNext.addEventListener('click', () => {
+        if(qFinished) { qIndex=0; qScore=0; qFinished=false; renderQuiz(); return; }
+        if(!checkQuiz()) return;
+        if(qIndex === quizData.length-1) {
+            let rec = qScore===3 ? "🌟 Excellent ! Aucune lacune." : (qScore===2 ? "📘 Bien, quelques révisions." : "📚 Révise les bases.");
+            qFeed.innerHTML = `<strong>Quiz terminé ! Score ${qScore}/3.</strong><br>${rec}`;
+            qNext.innerText = 'Recommencer';
+            qFinished = true;
+        } else {
+            qIndex++;
+            renderQuiz();
+        }
+    });
+    renderQuiz();
+
+    // Simulation
+    document.getElementById('simulateBtnModule').addEventListener('click', () => {
+        const domain = document.getElementById('simDomain').value;
+        const skill = document.getElementById('simSkill').value;
+        const resDiv = document.getElementById('simResultModule');
+        let metier = domain.includes('Informatique') ? 'Data Scientist' : (domain.includes('Ingénierie') ? 'Ingénieur' : 'Analyste financier');
+        resDiv.innerHTML = `<h4>🔮 Parcours suggéré</h4><p><strong>Métier :</strong> ${metier}</p><p><strong>Compétences :</strong> ${skill}, communication, résolution de problèmes.</p>`;
+        resDiv.style.display = 'block';
+    });
+
+    // Chat mentor
+    const chatDiv = document.getElementById('chatMessagesModule');
+    const chatInp = document.getElementById('chatInputModule');
+    const chatSend = document.getElementById('chatSendModule');
+    function addMsg(text, sender) {
+        const d = document.createElement('div');
+        d.className = `message ${sender}`;
+        d.innerHTML = `<div class="bubble">${text}</div>`;
+        chatDiv.appendChild(d);
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+    function botReply(userMsg) {
+        let reply = '';
+        const m = userMsg.toLowerCase();
+        if(m.includes('stress') || m.includes('anxiété')) reply = "Respire profondément. Fixe-toi un petit objectif réalisable aujourd'hui.";
+        else if(m.includes('révision') || m.includes('cours')) reply = "Sur quel chapitre veux-tu te concentrer ? Je te propose un résumé.";
+        else if(m.includes('orientation') || m.includes('métier')) reply = "Utilise le module Simulation pour un parcours personnalisé !";
+        else reply = "Je suis là pour t'aider. Dis-moi ce qui te préoccupe (stress, révision, orientation).";
+        setTimeout(() => addMsg(reply, 'bot'), 300);
+    }
+    chatSend.addEventListener('click', () => {
+        const txt = chatInp.value.trim();
+        if(!txt) return;
+        addMsg(txt, 'user');
+        chatInp.value = '';
+        botReply(txt);
+    });
+    chatInp.addEventListener('keypress', e => { if(e.key === 'Enter') chatSend.click(); });
+
+    function showNotif(msg) { alert(msg); }
+    document.querySelectorAll('.video-card').forEach(c => c.addEventListener('click', () => showNotif('Lecture vidéo')));
+</script>
+</body>
+</html>

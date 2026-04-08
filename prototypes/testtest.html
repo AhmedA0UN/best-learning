@@ -281,6 +281,66 @@
         @media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } .main-content { padding: 20px; } }
         @media (max-width: 900px) { .sidebar { width: 90px; } .logo-text, .nav-item span, .user-info, .nav-section-title, .progress-overview { display: none; } .nav-item { justify-content: center; padding: 16px; } .nav-item i { margin: 0; font-size: 24px; } .main-content { margin-left: 90px; } .quick-stats { grid-template-columns: 1fr; } .clubs-grid { grid-template-columns: 1fr; } }
     
+
+
+        /* ------- */
+
+        
+        /* Right Sidebar Widgets */
+        .right-sidebar { display: flex; flex-direction: column; gap: 24px; }
+        .widget { background: white; border-radius: 24px; padding: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); }
+        .widget-title { font-weight: 700; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .widget-title i { color: var(--accent); }
+
+        /* Module intégré dans un widget */
+        .module-integrated { margin-top: 16px; }
+        .module-tabs-inline { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .tab-module-btn { background: var(--bg-secondary); border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 40px; font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .tab-module-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .module-tab-content { display: none; }
+        .module-tab-content.active { display: block; }
+
+        /* Quiz */
+        .quiz-question { font-weight: 600; margin-bottom: 16px; font-size: 1rem; }
+        .quiz-options label { display: block; margin-bottom: 10px; padding: 10px 14px; background: var(--bg-primary); border-radius: 14px; border: 1px solid var(--border-light); cursor: pointer; font-size: 14px; }
+        .quiz-feedback { margin-top: 16px; padding: 12px; border-radius: 14px; background: #f1f5f9; font-size: 13px; }
+
+        /* Student list */
+        .student-list { display: flex; flex-direction: column; gap: 12px; }
+        .student-card { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--bg-primary); border-radius: 16px; }
+        .student-info h4 { font-size: 15px; margin-bottom: 4px; }
+        .skills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+        .skill-tag { background: #e6edf8; padding: 2px 10px; border-radius: 30px; font-size: 11px; }
+
+        /* Simulation */
+        .simulate-form select, .simulate-form button { padding: 10px 16px; border-radius: 30px; border: 1px solid var(--border-light); margin: 8px 0; width: 100%; }
+        .result-card { margin-top: 16px; background: #eef6ff; padding: 16px; border-radius: 20px; }
+
+        /* Chat */
+        .chat-container { border: 1px solid var(--border-light); border-radius: 20px; overflow: hidden; }
+        .chat-messages { height: 240px; overflow-y: auto; padding: 16px; background: #f8fafc; }
+        .message { margin-bottom: 12px; display: flex; }
+        .message.bot { justify-content: flex-start; }
+        .message.user { justify-content: flex-end; }
+        .bubble { max-width: 80%; padding: 10px 14px; border-radius: 20px; background: white; box-shadow: var(--shadow-sm); font-size: 13px; }
+        .bot .bubble { background: #e9eff9; }
+        .user .bubble { background: var(--accent); color: white; }
+        .chat-input { display: flex; padding: 12px; background: white; border-top: 1px solid var(--border-light); }
+        .chat-input input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 40px; outline: none; font-size: 13px; }
+        .chat-input button { margin-left: 10px; padding: 0 18px; border-radius: 40px; background: var(--accent); color: var(--primary); border: none; font-weight: 600; cursor: pointer; }
+
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 13px; }
+        .btn-primary:hover { background: var(--accent); color: var(--primary); }
+        .btn-outline { background: transparent; border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 30px; cursor: pointer; }
+
+        footer { text-align: center; padding: 30px 0 20px; color: var(--text-muted); border-top: 1px solid var(--border-light); margin-top: 40px; }
+        @media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } .main-content { padding: 20px; } }
+        @media (max-width: 900px) { .sidebar { width: 90px; } .logo-text, .nav-item span, .user-info, .nav-section-title, .progress-overview { display: none; } .nav-item { justify-content: center; padding: 16px; } .main-content { margin-left: 90px; } .quick-stats { grid-template-columns: 1fr 1fr; } }
+    
+
+
+
+
     </style>
 </head>
 <body>
@@ -485,7 +545,58 @@
             </div>
 
 
-                 
+            <!-- Page Modules IA intégrés (fusion des 4 modules) -->
+        <div class="page-container" id="page-modules-ia">
+            <div class="content-header"><div class="page-title"><h1><i class="fas fa-brain"></i> Modules Interactifs</h1><p>Détection de lacunes · Échange de compétences · Simulation · Mentor IA</p></div></div>
+            <div class="widget" style="padding:28px;">
+                <div class="module-tabs-inline" id="moduleTabsInline">
+                    <button class="tab-module-btn active" data-module="lacunes">📘 Lacunes & Quiz</button>
+                    <button class="tab-module-btn" data-module="echange">🤝 Échange compétences</button>
+                    <button class="tab-module-btn" data-module="simulation">🚀 Simulation parcours</button>
+                    <button class="tab-module-btn" data-module="mentor">🤖 Mentor IA</button>
+                </div>
+
+                <!-- Module 1 : Lacunes -->
+                <div id="module-lacunes" class="module-tab-content active">
+                    <div style="margin-bottom:16px;"><select id="quizSubject" style="padding:8px 16px;border-radius:30px;"><option>Mathématiques</option><option>Physique</option><option>Informatique</option></select></div>
+                    <div id="quizArea">
+                        <div class="quiz-question" id="quizQuestion">Quelle est la dérivée de x² ?</div>
+                        <div class="quiz-options" id="quizOptions"></div>
+                        <button id="quizNextBtn" class="btn-primary" style="margin-top:12px;">Question suivante</button>
+                        <div id="quizFeedback" class="quiz-feedback" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- Module 2 : Échange -->
+                <div id="module-echange" class="module-tab-content">
+                    <div class="student-list">
+                        <div class="student-card"><div><h4>Sarah M. <span style="font-weight:normal;">(L2 Info)</span></h4><div class="skills"><span class="skill-tag">Python</span><span class="skill-tag">Java</span></div><p>Offre aide en algo – cherche aide BD</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
+                        <div class="student-card"><div><h4>Yacine B. <span style="font-weight:normal;">(L3 Physique)</span></h4><div class="skills"><span class="skill-tag">Mécanique</span><span class="skill-tag">Électromag</span></div><p>Propose mentorat – cherche maths</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
+                        <div class="student-card"><div><h4>Inès L. <span style="font-weight:normal;">(L1 Éco)</span></h4><div class="skills"><span class="skill-tag">Statistiques</span><span class="skill-tag">Excel</span></div><p>Cherche binôme pour tests d'hypothèses</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
+                    </div>
+                </div>
+
+                <!-- Module 3 : Simulation -->
+                <div id="module-simulation" class="module-tab-content">
+                    <div class="simulate-form">
+                        <select id="simDomain"><option>Informatique & IA</option><option>Ingénierie</option><option>Gestion & Finance</option></select>
+                        <select id="simSkill"><option>Analyse de données</option><option>Programmation</option><option>Communication</option></select>
+                        <button id="simulateBtnModule" class="btn-primary">Simuler mon parcours</button>
+                        <div id="simResultModule" class="result-card" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- Module 4 : Mentor IA -->
+                <div id="module-mentor" class="module-tab-content">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessagesModule"><div class="message bot"><div class="bubble">🤖 Salut ! Je suis ton mentor IA. Parle-moi de tes difficultés (stress, révision, orientation).</div></div></div>
+                        <div class="chat-input"><input type="text" id="chatInputModule" placeholder="Écris ton message..."><button id="chatSendModule">Envoyer</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            
         <br><footer>© 2026 SuperEdu_isimg · Plateforme d'Excellence Académique · Modules IA intégrés</footer>
         </div>
     </div>
@@ -561,7 +672,113 @@
         document.querySelector('.search-header input')?.addEventListener('keypress', function(e) { if(e.key === 'Enter') showNotification(`Recherche: "${this.value}"`); });
         document.querySelector('.notification-badge')?.addEventListener('click', () => showNotification('Vous avez 3 nouvelles notifications'));
         document.addEventListener('keydown', function(e) { if(e.key === 'k' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); document.querySelector('.search-header input')?.focus(); } if(e.key === 'Escape') closeModal(); });
-        
+    
+    
+    
+    
+    
+    <!--            -->
+    
+    // Tabs des modules
+    const moduleBtns = document.querySelectorAll('.tab-module-btn');
+    const moduleContents = document.querySelectorAll('.module-tab-content');
+    moduleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const module = btn.dataset.module;
+            moduleBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            moduleContents.forEach(c => c.classList.remove('active'));
+            document.getElementById(`module-${module}`).classList.add('active');
+        });
+    });
+
+    // Quiz data
+    const quizData = [
+        { q: "Quelle est la dérivée de x² ?", opts: ["2x", "x", "x²", "2"], correct: 0 },
+        { q: "Combien vaut l'intégrale de 2x dx ?", opts: ["x² + C", "2x² + C", "x²", "2x"], correct: 0 },
+        { q: "Limite de sin(x)/x quand x→0 ?", opts: ["0", "1", "Infini", "N'existe pas"], correct: 1 }
+    ];
+    let qIndex = 0, qScore = 0, qFinished = false;
+    const qText = document.getElementById('quizQuestion');
+    const qOpts = document.getElementById('quizOptions');
+    const qNext = document.getElementById('quizNextBtn');
+    const qFeed = document.getElementById('quizFeedback');
+
+    function renderQuiz() {
+        if(qFinished) return;
+        const d = quizData[qIndex];
+        qText.innerText = d.q;
+        qOpts.innerHTML = d.opts.map((opt, i) => `<label><input type="radio" name="quizOpt" value="${i}"> ${opt}</label>`).join('');
+        qFeed.style.display = 'none';
+        qNext.innerText = (qIndex === quizData.length-1) ? 'Terminer' : 'Suivant';
+    }
+    function checkQuiz() {
+        const selected = document.querySelector('input[name="quizOpt"]:checked');
+        if(!selected) { alert("Choisis une réponse !"); return false; }
+        const isCorrect = parseInt(selected.value) === quizData[qIndex].correct;
+        if(isCorrect) qScore++;
+        let msg = isCorrect ? "✅ Bonne réponse !" : `❌ La bonne réponse était : ${quizData[qIndex].opts[quizData[qIndex].correct]}`;
+        qFeed.innerHTML = `${msg} Score: ${qScore}/${qIndex+1}`;
+        qFeed.style.display = 'block';
+        return true;
+    }
+    qNext.addEventListener('click', () => {
+        if(qFinished) { qIndex=0; qScore=0; qFinished=false; renderQuiz(); return; }
+        if(!checkQuiz()) return;
+        if(qIndex === quizData.length-1) {
+            let rec = qScore===3 ? "🌟 Excellent ! Aucune lacune." : (qScore===2 ? "📘 Bien, quelques révisions." : "📚 Révise les bases.");
+            qFeed.innerHTML = `<strong>Quiz terminé ! Score ${qScore}/3.</strong><br>${rec}`;
+            qNext.innerText = 'Recommencer';
+            qFinished = true;
+        } else {
+            qIndex++;
+            renderQuiz();
+        }
+    });
+    renderQuiz();
+
+    // Simulation
+    document.getElementById('simulateBtnModule').addEventListener('click', () => {
+        const domain = document.getElementById('simDomain').value;
+        const skill = document.getElementById('simSkill').value;
+        const resDiv = document.getElementById('simResultModule');
+        let metier = domain.includes('Informatique') ? 'Data Scientist' : (domain.includes('Ingénierie') ? 'Ingénieur' : 'Analyste financier');
+        resDiv.innerHTML = `<h4>🔮 Parcours suggéré</h4><p><strong>Métier :</strong> ${metier}</p><p><strong>Compétences :</strong> ${skill}, communication, résolution de problèmes.</p>`;
+        resDiv.style.display = 'block';
+    });
+
+    // Chat mentor
+    const chatDiv = document.getElementById('chatMessagesModule');
+    const chatInp = document.getElementById('chatInputModule');
+    const chatSend = document.getElementById('chatSendModule');
+    function addMsg(text, sender) {
+        const d = document.createElement('div');
+        d.className = `message ${sender}`;
+        d.innerHTML = `<div class="bubble">${text}</div>`;
+        chatDiv.appendChild(d);
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+    function botReply(userMsg) {
+        let reply = '';
+        const m = userMsg.toLowerCase();
+        if(m.includes('stress') || m.includes('anxiété')) reply = "Respire profondément. Fixe-toi un petit objectif réalisable aujourd'hui.";
+        else if(m.includes('révision') || m.includes('cours')) reply = "Sur quel chapitre veux-tu te concentrer ? Je te propose un résumé.";
+        else if(m.includes('orientation') || m.includes('métier')) reply = "Utilise le module Simulation pour un parcours personnalisé !";
+        else reply = "Je suis là pour t'aider. Dis-moi ce qui te préoccupe (stress, révision, orientation).";
+        setTimeout(() => addMsg(reply, 'bot'), 300);
+    }
+    chatSend.addEventListener('click', () => {
+        const txt = chatInp.value.trim();
+        if(!txt) return;
+        addMsg(txt, 'user');
+        chatInp.value = '';
+        botReply(txt);
+    });
+    chatInp.addEventListener('keypress', e => { if(e.key === 'Enter') chatSend.click(); });
+
+    function showNotif(msg) { alert(msg); }
+    document.querySelectorAll('.video-card').forEach(c => c.addEventListener('click', () => showNotif('Lecture vidéo')));
+    
     </script>
 </body>
 </html>
