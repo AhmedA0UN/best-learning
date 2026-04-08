@@ -490,6 +490,27 @@
 
     <script>
         let currentPage = 'pour-toi';
+
+        function showNotification(message) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            modalTitle.textContent = 'Information';
+            modalMessage.textContent = message;
+            modal.classList.add('active');
+            
+            setTimeout(() => {
+                modal.classList.remove('active');
+            }, 3000);
+        }
+
+        setTimeout(() => {
+            showNotification('Bienvenue sur SuperEdu_isimg ! Prêt à apprendre aujourd\'hui ?');
+        }, 1500);
+
+
+
         document.addEventListener('DOMContentLoaded', function() {
             const navItems = document.querySelectorAll('.nav-item');
             const pages = document.querySelectorAll('.page-container');
