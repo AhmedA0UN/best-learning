@@ -1,7 +1,10 @@
 amélioration du système éducatif : 
+
 - allocation du quelques séances ou quelques matières avec des séances personnalisés (self-learning)
 - changer la méthode d'évaluation actuelle (dans des matières précises, au lieu de faire des examens seulement récupératifs des information , on peut faire des examens qui demandes de résoudre des problèmes réels en utilisant ce qui a été étudié dans le cours/classe )
+
 - intégrer une plateforme en ligne (comme le principe de taki academy par exple) appelé "SuperEdu_isimg" qui aide les étudiants à plus : s améliorent et perfectionnent leurs compétences avec des vidéos courtes qui contiennent : des explications, des application du cours, quelques exemples réels, des cours avancées avec des guides des projets, Sujets liés au développement personnel (affaires, compétences personnelles, entrepreneuriat, micro et macroéconomie, pensée critique, créativité, compétences numérique, compétences sociales, technique des responsables Ressources Humaine, gestion du travail/projet, leader ship, pédagogie d'enseignements(prioritaire), etc.), un espace de collaboration (étudiants + étudiants, étudiants + enseignants, enseignants + enseignants), une partie pour faire quelques seances/visite avec le psycologue (enseignants + psycologue, etudiants + psycologue) etc … + intégration du agent AI (qui facilite l'étude des étudiants)
+
 - grâce à la plateforme "SuperEdu_isimg", intégrer plus des projets suivie par les enseignants dans les séances des Travaux Pratiques (TPs) 
 - faire quelques simulations des visites industriels ou de milieu industriels .
 - adapter les cours (plan d'étude) avec les changements rapides du domaine de l'informatique (chaque 3 ans)
