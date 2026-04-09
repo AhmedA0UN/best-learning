@@ -245,17 +245,6 @@
         .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-light); padding: 12px 28px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 14px; }
         .btn-secondary:hover { background: white; border-color: var(--accent); transform: scale(1.02); }
 
-        .module-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin: 18px 0 28px; }
-        .module-feature-card { background: rgba(255,255,255,0.95); border: 1px solid var(--border-light); border-radius: 24px; padding: 24px; box-shadow: var(--shadow-sm); transition: var(--transition); }
-        .module-feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-        .module-feature-card i { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border-radius: 18px; color: white; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); font-size: 18px; margin-bottom: 16px; }
-        .module-feature-card h3 { font-size: 18px; margin-bottom: 8px; font-weight: 700; }
-        .module-feature-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; margin-bottom: 18px; }
-        .module-card-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(56,189,248,0.12); color: var(--accent); font-size: 12px; font-weight: 700; margin-bottom: 14px; }
-        .module-status-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-        .module-status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #f8fafc; border: 1px solid var(--border-light); font-size: 12px; color: var(--text-secondary); }
-        .module-status-pill i { color: var(--accent); }
-
         /* ===== CLUBS ===== */
         .clubs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 28px; }
         .club-card { background: white; border-radius: 24px; padding: 28px; border: 1px solid var(--border-light); transition: var(--transition); text-align: center; }
@@ -460,6 +449,12 @@
         .tab-module-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
         .module-tab-content { display: none; }
         .module-tab-content.active { display: block; }
+        .module-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 24px; }
+        .module-card { background: white; border-radius: 24px; padding: 24px; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; gap: 16px; }
+        .module-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .module-card h3 { font-size: 18px; margin-bottom: 8px; }
+        .module-card p { color: var(--text-secondary); line-height: 1.6; font-size: 14px; }
+        .module-card button { align-self: flex-start; }
 
 
 
@@ -684,7 +679,7 @@
                 <div class="resource-grid">
                     <div class="resource-card"><div class="resource-icon"><i class="fas fa-user-tie"></i></div><h3>Leadership Situationnel</h3><p>Adapter son style de management selon la maturité de l'équipe et les situations.</p><div class="resource-meta"><button class="btn-primary" onclick="showNotification('Accès au cours...')">Se former</button></div></div>
                     <div class="resource-card"><div class="resource-icon"><i class="fas fa-handshake"></i></div><h3>Gestion des Conflits</h3><p>Techniques de médiation et résolution de conflits en milieu professionnel.</p><div class="resource-meta"><button class="btn-primary" onclick="showNotification('Accès au cours...')">Apprendre</button></div></div>
-                    <div class="resource-card"><div class="resource-icon"><i class="fas fa-clipboard-list"></i></div><h3>Techniques RH Avancées</h3><p>Recrutement, évaluation des performances, gestion des carrières et droit du travail.</p><div class="resource-meta"><span class="badge"><a href="certification.html" target="_blank" rel="noopener noreferrer">Certification</a></span><button class="btn-primary" onclick="showNotification('Accès au cours...')">Découvrir</button></div></div>
+                    <div class="resource-card"><div class="resource-icon"><i class="fas fa-clipboard-list"></i></div><h3>Techniques RH Avancées</h3><p>Recrutement, évaluation des performances, gestion des carrières et droit du travail.</p><div class="resource-meta"><span class="badge">Certification</span><button class="btn-primary" onclick="showNotification('Accès au cours...')">Découvrir</button></div></div>
                     <div class="resource-card"><div class="resource-icon"><i class="fas fa-comments"></i></div><h3>Communication Managériale</h3><p>Techniques de communication efficace pour managers et leaders d'équipe.</p><div class="resource-meta"><button class="btn-primary" onclick="showNotification('Accès au cours...')">Explorer</button></div></div>
                 </div>
             </div>
@@ -779,11 +774,6 @@
                     <div style="max-width:780px;">
                         <h2 style="font-size:22px;margin:0;">Votre espace IA multimodal</h2>
                         <p style="margin:10px 0 0;color:var(--text-secondary);">Choisissez parmi quatre modes intelligents pour progresser : quiz personnalisé, échange de compétences, simulation de parcours et mentor IA. Le parcours par niveaux est conçu pour débloquer vos compétences étape par étape. <a href="mentor IA.html" target="_blank">pour une vue détaillée</a></p>
-                        <div class="module-status-pills">
-                            <span class="module-status-pill"><i class="fas fa-bolt"></i> Objectif du jour: 20 min</span>
-                            <span class="module-status-pill"><i class="fas fa-chart-line"></i> Progression : 68%</span>
-                            <span class="module-status-pill"><i class="fas fa-star"></i> Niveau IA : 3</span>
-                        </div>
                     </div>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;">
                         <button class="btn-secondary" onclick="document.querySelector('[data-module=level]').click()">Niveaux</button>
@@ -791,30 +781,26 @@
                     </div>
                 </div>
             </div>
-            <div class="module-summary-grid">
-                <div class="module-feature-card">
-                    <span class="module-card-badge"><i class="fas fa-sparkles"></i> Focus intelligent</span>
-                    <h3>Défi du jour</h3>
-                    <p>Termine un quiz rapide et débloque un feedback personnalisé pour améliorer ton score.</p>
-                    <button class="btn-primary" onclick="document.querySelector('[data-module=lacunes]').click()">Passer au Quiz</button>
+            <div class="module-cards">
+                <div class="module-card">
+                    <h3>Quiz adaptatif</h3>
+                    <p>Identifie tes lacunes et propose un parcours d'entraînement personnalisé dès maintenant.</p>
+                    <button class="btn-secondary" onclick="document.querySelector('[data-module=lacunes]').click()">Démarrer</button>
                 </div>
-                <div class="module-feature-card">
-                    <span class="module-card-badge"><i class="fas fa-handshake-angle"></i> Match rapide</span>
+                <div class="module-card">
                     <h3>Échange de compétences</h3>
-                    <p>Trouve un pair avec un profil complémentaire et démarre un échange pédagogique en 1 clic.</p>
-                    <button class="btn-secondary" onclick="document.querySelector('[data-module=echange]').click()">Voir les profils</button>
+                    <p>Connecte-toi avec des pairs qui complètent ton profil pour monter en compétences ensemble.</p>
+                    <button class="btn-secondary" onclick="document.querySelector('[data-module=echange]').click()">Explorer</button>
                 </div>
-                <div class="module-feature-card">
-                    <span class="module-card-badge"><i class="fas fa-rocket"></i> Parcours optimisé</span>
-                    <h3>Simulation IA</h3>
-                    <p>Découvre un parcours de carrière guidé par tes forces, avec suggestions de compétences à renforcer.</p>
-                    <button class="btn-secondary" onclick="document.querySelector('[data-module=simulation]').click()">Simuler maintenant</button>
+                <div class="module-card">
+                    <h3>Simulation de parcours</h3>
+                    <p>Testez des trajectoires métiers intelligentes en fonction de ton domaine et de tes objectifs.</p>
+                    <button class="btn-secondary" onclick="document.querySelector('[data-module=simulation]').click()">Simuler</button>
                 </div>
-                <div class="module-feature-card">
-                    <span class="module-card-badge"><i class="fas fa-robot"></i> Mentor intelligent</span>
-                    <h3>Assistance instantanée</h3>
-                    <p>Pose une question au mentor IA et reçois une réponse adaptée à ta situation d'étude.</p>
-                    <button class="btn-secondary" onclick="document.querySelector('[data-module=mentor]').click()">Parler au Mentor</button>
+                <div class="module-card">
+                    <h3>Mentor IA</h3>
+                    <p>Accède à des conseils de révision, de gestion du stress et d’orientation en temps réel.</p>
+                    <button class="btn-secondary" onclick="document.querySelector('[data-module=mentor]').click()">Discuter</button>
                 </div>
             </div>
             <div class="widget" style="padding:28px;">
@@ -1060,8 +1046,16 @@
         const domain = document.getElementById('simDomain').value;
         const skill = document.getElementById('simSkill').value;
         const resDiv = document.getElementById('simResultModule');
-        let metier = domain.includes('Informatique') ? 'Data Scientist' : (domain.includes('Ingénierie') ? 'Ingénieur' : 'Analyste financier');
-        resDiv.innerHTML = `<h4>🔮 Parcours suggéré</h4><p><strong>Métier :</strong> ${metier}</p><p><strong>Compétences :</strong> ${skill}, communication, résolution de problèmes.</p>`;
+        let metier = domain.includes('Informatique') ? 'Data Scientist' : (domain.includes('Ingénierie') ? 'Ingénieur R&D' : 'Analyste financier');
+        let focus = domain.includes('Informatique') ? 'modèles IA, data et automatisation' : (domain.includes('Ingénierie') ? 'conception de systèmes et prototypage' : 'analyse de marché et modélisation financière');
+        resDiv.innerHTML = `
+            <h4>🔮 Parcours suggéré</h4>
+            <p><strong>Métier :</strong> ${metier}</p>
+            <p><strong>Objectif :</strong> Construire un profil solide sur ${focus}.</p>
+            <p><strong>Compétences à renforcer :</strong> ${skill}, communication, travail d'équipe.</p>
+            <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;"><span class="badge">Domaine : ${domain}</span><span class="badge">Niveau recommandé : Intermédiaire</span></div>
+            <p style="margin-top:16px;color:var(--text-secondary);">Conseil : alterne quiz et simulation pour consolider ta progression rapidement.</p>
+        `;
         resDiv.style.display = 'block';
     });
 
