@@ -916,6 +916,31 @@
             }, 3000);
         }
 
+        function showLevelResources(levelId) {
+            const level = levelsData.find(l => l.id === levelId);
+            if (!level) return;
+            
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            modalTitle.textContent = `Ressources - ${level.title}`;
+            
+            const resourcesHtml = level.resources.map(resource => `
+                <div class="resource-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px;">
+                    <i class="fas ${resource.type === 'pdf' ? 'fa-file-pdf' : resource.type === 'video' ? 'fa-video' : 'fa-code'}" style="color: var(--accent); font-size: 18px;"></i>
+                    <div style="flex: 1;">
+                        <strong>${resource.title}</strong>
+                        <br><small style="color: var(--text-muted);">${resource.type.toUpperCase()}</small>
+                    </div>
+                    <a href="${resource.url}" class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Accéder</a>
+                </div>
+            `).join('');
+            
+            modalMessage.innerHTML = resourcesHtml || 'Aucune ressource disponible pour ce niveau.';
+            modal.classList.add('active');
+        }
+
         setTimeout(() => {
             showNotification('Bienvenue sur SuperEdu_isimg ! Prêt à apprendre aujourd\'hui ?');
         }, 1000);
@@ -1100,10 +1125,10 @@
     }
 
     const levelsData = [
-        { id: 1, title: "Niveau 1 : Fondamentaux", description: "Maîtrise des bases : variables, types, conditions simples", unlocked: true, completed: false, progress: 0, quiz: { question: "Qu'est-ce qu'une variable ?", options: ["Une valeur qui change", "Un conteneur de données", "Une fonction", "Une classe"], correct: 1, explanation: "Une variable est un conteneur qui stocke une donnée." } },
-        { id: 2, title: "Niveau 2 : Structures de contrôle", description: "Boucles, conditions avancées, logique algorithmique", unlocked: false, completed: false, progress: 0, quiz: { question: "Que fait 'for i in range(3):' ?", options: ["Itère 3 fois", "Crée une variable i=3", "Boucle infinie", "Erreur"], correct: 0, explanation: "range(3) génère 0,1,2 → 3 itérations." } },
-        { id: 3, title: "Niveau 3 : Fonctions et modularité", description: "Création de fonctions, paramètres, retour, portée", unlocked: false, completed: false, progress: 0, quiz: { question: "Quel mot-clé définit une fonction en Python ?", options: ["func", "define", "def", "function"], correct: 2, explanation: "Le mot-clé est 'def'." } },
-        { id: 4, title: "Niveau 4 : Structures de données", description: "Listes, dictionnaires, tuples, compréhensions", unlocked: false, completed: false, progress: 0, quiz: { question: "Quelle structure est mutable ?", options: ["Tuple", "String", "Liste", "Int"], correct: 2, explanation: "La liste est mutable (modifiable)." } }
+        { id: 1, title: "Niveau 1 : Fondamentaux", description: "Maîtrise des bases : variables, types, conditions simples", unlocked: true, completed: false, progress: 0, quiz: { question: "Qu'est-ce qu'une variable ?", options: ["Une valeur qui change", "Un conteneur de données", "Une fonction", "Une classe"], correct: 1, explanation: "Une variable est un conteneur qui stocke une donnée." }, resources: [{title: "Guide des variables en Python", url: "#", type: "pdf"}, {title: "Vidéo : Introduction aux types de données", url: "#", type: "video"}, {title: "Exercices pratiques", url: "#", type: "exercise"}] },
+        { id: 2, title: "Niveau 2 : Structures de contrôle", description: "Boucles, conditions avancées, logique algorithmique", unlocked: false, completed: false, progress: 0, quiz: { question: "Que fait 'for i in range(3):' ?", options: ["Itère 3 fois", "Crée une variable i=3", "Boucle infinie", "Erreur"], correct: 0, explanation: "range(3) génère 0,1,2 → 3 itérations." }, resources: [{title: "Tutoriel sur les boucles", url: "#", type: "pdf"}, {title: "Vidéo : Conditions if/else", url: "#", type: "video"}, {title: "Algorithmes de base", url: "#", type: "exercise"}] },
+        { id: 3, title: "Niveau 3 : Fonctions et modularité", description: "Création de fonctions, paramètres, retour, portée", unlocked: false, completed: false, progress: 0, quiz: { question: "Quel mot-clé définit une fonction en Python ?", options: ["func", "define", "def", "function"], correct: 2, explanation: "Le mot-clé est 'def'." }, resources: [{title: "Guide des fonctions", url: "#", type: "pdf"}, {title: "Vidéo : Paramètres et retour", url: "#", type: "video"}, {title: "Projets modulaires", url: "#", type: "exercise"}] },
+        { id: 4, title: "Niveau 4 : Structures de données", description: "Listes, dictionnaires, tuples, compréhensions", unlocked: false, completed: false, progress: 0, quiz: { question: "Quelle structure est mutable ?", options: ["Tuple", "String", "Liste", "Int"], correct: 2, explanation: "La liste est mutable (modifiable)." }, resources: [{title: "Structures de données avancées", url: "#", type: "pdf"}, {title: "Vidéo : Dictionnaires et listes", url: "#", type: "video"}, {title: "Manipulations de données", url: "#", type: "exercise"}] }
     ];
     let currentLevelQuiz = null;
 
@@ -1135,7 +1160,7 @@
                         <button class="btn-primary" onclick="startLevelQuiz(${level.id})" style="padding: 8px 20px; font-size: 13px;">
                             <i class="fas fa-question-circle"></i> Quiz de validation
                         </button>
-                        <button class="btn-secondary" onclick="showNotification('Voir les ressources du ${level.title}...')" style="padding: 8px 20px; font-size: 13px;">
+                        <button class="btn-secondary" onclick="showLevelResources(${level.id})" style="padding: 8px 20px; font-size: 13px;">
                             <i class="fas fa-book-open"></i> Ressources
                         </button>
                     </div>
