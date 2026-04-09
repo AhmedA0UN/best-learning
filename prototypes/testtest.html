@@ -336,8 +336,211 @@
         footer { text-align: center; padding: 30px 0 20px; color: var(--text-muted); border-top: 1px solid var(--border-light); margin-top: 40px; }
         @media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } .main-content { padding: 20px; } }
         @media (max-width: 900px) { .sidebar { width: 90px; } .logo-text, .nav-item span, .user-info, .nav-section-title, .progress-overview { display: none; } .nav-item { justify-content: center; padding: 16px; } .main-content { margin-left: 90px; } .quick-stats { grid-template-columns: 1fr 1fr; } }
-    
+        
 
+
+        <!--  ====== -->
+
+        
+        .right-sidebar { display: flex; flex-direction: column; gap: 24px; }
+        .widget { background: white; border-radius: 24px; padding: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); transition: var(--transition); }
+        .widget:hover { box-shadow: var(--shadow-lg); }
+        .widget-title { font-weight: 700; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .widget-title i { color: var(--accent); }
+
+        .ai-widget { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; border: 1px solid rgba(56, 189, 248, 0.2); }
+        .ai-widget .widget-title { color: white; }
+        .ai-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+        .ai-avatar { width: 56px; height: 56px; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .ai-status { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+        .ai-status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .ai-message-box { background: rgba(30, 41, 59, 0.6); border-radius: 18px; padding: 18px; margin-bottom: 18px; border: 1px solid rgba(56, 189, 248, 0.2); }
+        .ai-message { color: #e2e8f0; font-size: 14px; margin-bottom: 12px; line-height: 1.6; }
+        .ai-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .ai-suggestion-chip { background: rgba(15, 23, 42, 0.6); padding: 8px 14px; border-radius: 30px; font-size: 12px; color: var(--accent-light); cursor: pointer; border: 1px solid rgba(56, 189, 248, 0.2); transition: var(--transition); }
+        .ai-suggestion-chip:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); transform: scale(1.05); }
+        .ai-input { display: flex; gap: 10px; margin-top: 16px; }
+        .ai-input input { flex: 1; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 40px; padding: 12px 16px; color: white; outline: none; font-size: 14px; transition: var(--transition); }
+        .ai-input input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1); }
+        .ai-input input::placeholder { color: var(--text-muted); }
+        .ai-input button { background: var(--accent); border: none; border-radius: 40px; padding: 0 22px; color: var(--primary); font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .ai-input button:hover { background: var(--accent-light); transform: scale(1.05); }
+
+        .collab-list { display: flex; flex-direction: column; gap: 16px; }
+        .collab-room { display: flex; align-items: center; justify-content: space-between; padding: 16px; background: var(--bg-primary); border-radius: 18px; border: 1px solid var(--border-light); transition: var(--transition); }
+        .collab-room:hover { background: white; border-color: var(--accent-light); transform: translateX(4px); }
+        .room-info { display: flex; align-items: center; gap: 14px; }
+        .room-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #4f46e5; font-size: 20px; }
+        .room-details h4 { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+        .room-details p { font-size: 12px; color: var(--text-muted); }
+        .online-indicator { display: flex; align-items: center; gap: 6px; }
+        .online-dot { width: 10px; height: 10px; background: var(--success); border-radius: 50%; animation: pulse 1.5s infinite; }
+        .join-btn { background: var(--primary); color: white; border: none; padding: 8px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .join-btn:hover { background: var(--accent); color: var(--primary); transform: scale(1.05); }
+
+        .psy-session { display: flex; gap: 16px; padding: 16px; background: linear-gradient(135deg, #fef3c7, #fef9c3); border-radius: 18px; margin-bottom: 14px; border: 1px solid #fde68a; transition: var(--transition); }
+        .psy-session:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+        .psy-avatar { width: 52px; height: 52px; background: linear-gradient(135deg, var(--warning), #fbbf24); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; }
+        .psy-details h4 { font-weight: 600; margin-bottom: 4px; }
+        .psy-details p { font-size: 13px; color: #92400e; }
+        .book-session-btn { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 16px; font-weight: 600; cursor: pointer; margin-top: 12px; transition: var(--transition); }
+        .book-session-btn:hover { background: var(--accent); color: var(--primary); transform: translateY(-2px); }
+
+        .category-header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-radius: 28px; padding: 40px; color: white; margin-bottom: 36px; position: relative; overflow: hidden; }
+        .category-header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%); border-radius: 50%; }
+        .category-header::after { content: ''; position: absolute; bottom: -30%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(167, 139, 250, 0.1), transparent 70%); border-radius: 50%; }
+        .category-header h1 { font-size: 42px; margin-bottom: 12px; position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
+        .category-header p { color: #94a3b8; font-size: 16px; max-width: 600px; position: relative; z-index: 1; }
+        .category-stats { display: flex; gap: 40px; margin-top: 32px; position: relative; z-index: 1; }
+        .stat-item { display: flex; align-items: center; gap: 14px; }
+        .stat-item i { font-size: 32px; color: var(--accent); }
+        .stat-info h3 { font-size: 32px; font-weight: 800; }
+        .stat-info p { color: var(--text-muted); font-size: 14px; }
+
+        .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; margin-top: 28px; }
+        .resource-card { background: white; border-radius: 24px; padding: 32px; border: 1px solid var(--border-light); transition: var(--transition); position: relative; overflow: hidden; }
+        .resource-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-purple)); transform: scaleX(0); transition: var(--transition); }
+        .resource-card:hover::before { transform: scaleX(1); }
+        .resource-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-6px); border-color: var(--accent-light); }
+        .resource-icon { width: 72px; height: 72px; background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-size: 32px; margin-bottom: 24px; transition: var(--transition); }
+        .resource-card:hover .resource-icon { transform: scale(1.1) rotate(5deg); }
+        .resource-card h3 { font-size: 22px; margin-bottom: 12px; font-weight: 700; }
+        .resource-card p { color: var(--text-secondary); font-size: 15px; margin-bottom: 24px; line-height: 1.6; }
+        .resource-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border-light); }
+        .badge { background: linear-gradient(135deg, #dbeafe, #e0e7ff); color: #1e40af; padding: 6px 18px; border-radius: 30px; font-size: 13px; font-weight: 700; }
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 14px; }
+        .btn-primary:hover { background: var(--accent); color: var(--primary); transform: scale(1.05); box-shadow: var(--shadow-md); }
+        .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-light); padding: 12px 28px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 14px; }
+        .btn-secondary:hover { background: white; border-color: var(--accent); transform: scale(1.02); }
+
+        .clubs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 28px; }
+        .club-card { background: white; border-radius: 24px; padding: 28px; border: 1px solid var(--border-light); transition: var(--transition); text-align: center; }
+        .club-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-6px); border-color: var(--accent-light); }
+        .club-logo { width: 100px; height: 100px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); border-radius: 30px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px; box-shadow: var(--shadow-lg); }
+        .club-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .club-category { display: inline-block; padding: 4px 16px; background: var(--bg-secondary); border-radius: 30px; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 16px; }
+        .club-description { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+        .club-stats { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; padding: 16px 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+        .club-stat { text-align: center; }
+        .club-stat-value { font-size: 20px; font-weight: 700; color: var(--primary); }
+        .club-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+        .club-actions { display: flex; gap: 12px; justify-content: center; }
+        .back-button { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px; color: var(--text-secondary); cursor: pointer; transition: var(--transition); font-weight: 600; }
+        .back-button:hover { color: var(--accent); transform: translateX(-4px); }
+
+        .session-list { display: flex; flex-direction: column; gap: 16px; }
+        .session-card { display: flex; align-items: center; justify-content: space-between; padding: 18px; background: var(--bg-primary); border-radius: 18px; border: 1px solid var(--border-light); transition: var(--transition); }
+        .session-card:hover { background: white; border-color: var(--accent-light); transform: translateX(4px); }
+        .session-time { font-weight: 700; color: var(--primary); font-size: 15px; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; animation: fadeIn 0.3s ease; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: white; border-radius: 32px; padding: 40px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .modal-header h2 { font-size: 24px; font-weight: 700; }
+        .modal-close { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-secondary); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); font-size: 20px; }
+        .modal-close:hover { background: var(--danger); color: white; }
+
+        .module-tabs-inline { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .tab-module-btn { background: var(--bg-secondary); border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 40px; font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .tab-module-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .module-tab-content { display: none; }
+        .module-tab-content.active { display: block; }
+
+
+
+
+
+        /* Level-based learning specific styles */
+        .level-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .level-card.completed {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-color: #86efac;
+        }
+        .level-card.locked {
+            opacity: 0.7;
+            filter: grayscale(0.1);
+        }
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .level-title {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .level-badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .level-status {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .level-status.completed { color: var(--success); }
+        .level-status.locked { color: var(--text-muted); }
+        .level-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .level-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .level-progress {
+            margin-top: 12px;
+        }
+        .level-progress-bar {
+            height: 6px;
+            background: var(--border-light);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .level-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        .quiz-mini {
+            margin-top: 16px;
+            padding: 16px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+        }
+        .quiz-mini-options label {
+            display: block;
+            margin: 8px 0;
+            padding: 8px 12px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        @media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } .main-content { padding: 20px; } }
+        @media (max-width: 900px) { .sidebar { width: 90px; } .logo-text, .nav-item span, .user-info, .nav-section-title, .progress-overview { display: none; } .nav-item { justify-content: center; padding: 16px; } .main-content { margin-left: 90px; } .quick-stats { grid-template-columns: 1fr 1fr; } }
+        footer { text-align: center; padding: 30px 0 20px; color: var(--text-muted); border-top: 1px solid var(--border-light); margin-top: 40px; }
 
 
 
@@ -369,6 +572,8 @@
                 <button class="nav-item" data-page="pedagogie"><i class="fas fa-chalkboard-user"></i><span>Pédagogie</span></button>
                 <button class="nav-item" data-page="competences"><i class="fas fa-briefcase"></i><span>Compétences Pro</span></button>
                 <button class="nav-item" data-page="entrepreneuriat"><i class="fas fa-rocket"></i><span>Entrepreneuriat</span></button>
+                <div class="nav-section-title"><i class="fas fa-robot"></i><span>Modules IA</span></div>
+                <button class="nav-item" data-page="modules-ia"><i class="fas fa-brain"></i><span>Modules Interactifs</span><span class="badge-new">NEW</span></button>
                 <div class="nav-section-title"><i class="fas fa-users"></i><span>Espaces</span></div>
                 <button class="nav-item" data-page="collaboration"><i class="fas fa-users"></i><span>Collaboration</span></button>
                 <button class="nav-item" data-page="clubs"><i class="fas fa-users-between-lines"></i><span>Clubs & Associations</span></button>
@@ -545,20 +750,49 @@
             </div>
 
 
+
+
+
+
+
+
+
+
+
+
             <!-- Page Modules IA intégrés (fusion des 4 modules) -->
         <div class="page-container" id="page-modules-ia">
-            <div class="content-header"><div class="page-title"><h1><i class="fas fa-brain"></i> Modules Interactifs</h1><p>Détection de lacunes · Échange de compétences · Simulation · Mentor IA</p></div></div>
+            <div class="content-header"><div class="page-title"><h1><i class="fas fa-brain"></i> Modules Interactifs</h1><p>Détection de lacunes · Échange de compétences · Simulation · Mentor IA · Level-Based Learning</p></div></div>
+            <div class="widget module-intro" style="padding:24px 28px 18px; margin-bottom:18px;">
+                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;">
+                    <div style="max-width:780px;">
+                        <h2 style="font-size:22px;margin:0;">Votre espace IA multimodal</h2>
+                        <p style="margin:10px 0 0;color:var(--text-secondary);">Choisissez parmi quatre modes intelligents pour progresser : quiz personnalisé, échange de compétences, simulation de parcours et mentor IA. Le parcours par niveaux est conçu pour débloquer vos compétences étape par étape. <a href="mentor IA.html" target="_blank">pour une vue détaillée</a></p>
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <button class="btn-secondary" onclick="document.querySelector('[data-module=level]').click()">Niveaux</button>
+                        <button class="btn-primary" onclick="document.querySelector('[data-module=mentor]').click()">Mentor IA</button>
+                    </div>
+                </div>
+            </div>
             <div class="widget" style="padding:28px;">
                 <div class="module-tabs-inline" id="moduleTabsInline">
                     <button class="tab-module-btn active" data-module="lacunes">📘 Lacunes & Quiz</button>
                     <button class="tab-module-btn" data-module="echange">🤝 Échange compétences</button>
                     <button class="tab-module-btn" data-module="simulation">🚀 Simulation parcours</button>
                     <button class="tab-module-btn" data-module="mentor">🤖 Mentor IA</button>
+                    <button class="tab-module-btn" data-module="level">🎮 Level-Based Learning</button>
                 </div>
 
-                <!-- Module 1 : Lacunes -->
                 <div id="module-lacunes" class="module-tab-content active">
-                    <div style="margin-bottom:16px;"><select id="quizSubject" style="padding:8px 16px;border-radius:30px;"><option>Mathématiques</option><option>Physique</option><option>Informatique</option></select></div>
+                    <div style="margin-bottom:16px; display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
+                        <select id="quizSubject" style="padding:10px 16px; border-radius:30px; border:1px solid var(--border-light);">
+                            <option>Mathématiques</option>
+                            <option>Physique</option>
+                            <option>Informatique</option>
+                        </select>
+                        <span class="badge" style="font-size:13px; padding:8px 14px;">Quiz personnalisé</span>
+                    </div>
                     <div id="quizArea">
                         <div class="quiz-question" id="quizQuestion">Quelle est la dérivée de x² ?</div>
                         <div class="quiz-options" id="quizOptions"></div>
@@ -590,13 +824,32 @@
                 <div id="module-mentor" class="module-tab-content">
                     <div class="chat-container">
                         <div class="chat-messages" id="chatMessagesModule"><div class="message bot"><div class="bubble">🤖 Salut ! Je suis ton mentor IA. Parle-moi de tes difficultés (stress, révision, orientation).</div></div></div>
+                        <div class="ai-suggestions" style="padding:14px 20px 0; gap:10px;">
+                            <span class="ai-suggestion-chip" onclick="sendPresetMessage('J\'ai besoin d\'un plan de révision pour les examens.')">Plan de révision</span>
+                            <span class="ai-suggestion-chip" onclick="sendPresetMessage('Aide-moi à organiser mon temps d\'étude.')">Organisation</span>
+                            <span class="ai-suggestion-chip" onclick="sendPresetMessage('Je veux une technique pour réduire mon stress.')">Gestion du stress</span>
+                        </div>
                         <div class="chat-input"><input type="text" id="chatInputModule" placeholder="Écris ton message..."><button id="chatSendModule">Envoyer</button></div>
                     </div>
+                </div>
+
+                <!-- Module 5 : Level-Based Learning -->
+                <div id="module-level" class="module-tab-content">
+                    <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border-radius: 24px; padding: 24px; margin-bottom: 24px; color: white;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                            <div><i class="fas fa-chart-simple" style="font-size: 42px; color: var(--accent);"></i></div>
+                            <div>
+                                <h2 style="font-size: 28px; margin:0;">Apprentissage par Niveaux</h2>
+                                <p style="margin:4px 0 0;">Progresse étape par étape, débloque chaque palier</p>
+                            </div>
+                            <div><span class="badge" style="background: var(--accent); color: var(--primary);">Progression: <span id="globalLevelProgress">0</span>%</span></div>
+                        </div>
+                    </div>
+                    <div id="levelsContainer"></div>
                 </div>
             </div>
         </div>
 
-            
         <br><footer>© 2026 SuperEdu_isimg · Plateforme d'Excellence Académique · Modules IA intégrés</footer>
         </div>
     </div>
@@ -652,13 +905,6 @@
             document.querySelectorAll('.nav-item').forEach(item => { item.classList.remove('active'); if(item.dataset.page === 'collaboration') item.classList.add('active'); });
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function showNotification(message) {
-            const modal = document.getElementById('modal');
-            document.getElementById('modalTitle').textContent = 'Information';
-            document.getElementById('modalMessage').textContent = message;
-            modal.classList.add('active');
-            setTimeout(() => modal.classList.remove('active'), 3000);
-        }
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
         function sendAIMessage() {
             const input = document.getElementById('aiInput');
@@ -689,20 +935,50 @@
             btn.classList.add('active');
             moduleContents.forEach(c => c.classList.remove('active'));
             document.getElementById(`module-${module}`).classList.add('active');
+            if (module === 'level') renderLevels();
         });
     });
 
     // Quiz data
-    const quizData = [
-        { q: "Quelle est la dérivée de x² ?", opts: ["2x", "x", "x²", "2"], correct: 0 },
-        { q: "Combien vaut l'intégrale de 2x dx ?", opts: ["x² + C", "2x² + C", "x²", "2x"], correct: 0 },
-        { q: "Limite de sin(x)/x quand x→0 ?", opts: ["0", "1", "Infini", "N'existe pas"], correct: 1 }
-    ];
+    const quizBanks = {
+        "Mathématiques": [
+            { q: "Quelle est la dérivée de x² ?", opts: ["2x", "x", "x²", "2"], correct: 0 },
+            { q: "Combien vaut l'intégrale de 2x dx ?", opts: ["x² + C", "2x² + C", "x²", "2x"], correct: 0 },
+            { q: "Limite de sin(x)/x quand x→0 ?", opts: ["0", "1", "Infini", "N'existe pas"], correct: 1 }
+        ],
+        "Physique": [
+            { q: "Quelle est la vitesse de la lumière dans le vide ?", opts: ["3x10^8 m/s", "3x10^6 m/s", "3x10^5 m/s", "1x10^8 m/s"], correct: 0 },
+            { q: "Que représente l'énergie cinétique ?", opts: ["mgh", "1/2mv²", "F/d", "mv"], correct: 1 },
+            { q: "Quelle loi décrit la force de gravitation ?", opts: ["Ohm", "Newton", "Pythagore", "Faraday"], correct: 1 }
+        ],
+        "Informatique": [
+            { q: "Quel type de tri a une complexité moyenne en O(n log n) ?", opts: ["Tri à bulles", "Tri par insertion", "Tri rapide", "Tri par sélection"], correct: 2 },
+            { q: "Que signifie 'API' ?", opts: ["Application Programming Interface", "Automatic Program Input", "Applied Processing Instance", "Application Preview Interface"], correct: 0 },
+            { q: "Quel mot-clé crée une fonction en JavaScript ?", opts: ["func", "def", "function", "method"], correct: 2 }
+        ]
+    };
+    let currentSubject = "Mathématiques";
+    let quizData = quizBanks[currentSubject];
     let qIndex = 0, qScore = 0, qFinished = false;
     const qText = document.getElementById('quizQuestion');
     const qOpts = document.getElementById('quizOptions');
     const qNext = document.getElementById('quizNextBtn');
     const qFeed = document.getElementById('quizFeedback');
+    const quizSubjectSelect = document.getElementById('quizSubject');
+
+    function switchQuizSubject(subject) {
+        currentSubject = subject;
+        quizData = quizBanks[subject];
+        qIndex = 0;
+        qScore = 0;
+        qFinished = false;
+        renderQuiz();
+        showNotification(`Sujet sélectionné : ${subject}`);
+    }
+
+    quizSubjectSelect?.addEventListener('change', function() {
+        if(this.value) switchQuizSubject(this.value);
+    });
 
     function renderQuiz() {
         if(qFinished) return;
@@ -714,7 +990,7 @@
     }
     function checkQuiz() {
         const selected = document.querySelector('input[name="quizOpt"]:checked');
-        if(!selected) { alert("Choisis une réponse !"); return false; }
+        if(!selected) { showNotification("Choisis une réponse !"); return false; }
         const isCorrect = parseInt(selected.value) === quizData[qIndex].correct;
         if(isCorrect) qScore++;
         let msg = isCorrect ? "✅ Bonne réponse !" : `❌ La bonne réponse était : ${quizData[qIndex].opts[quizData[qIndex].correct]}`;
@@ -776,7 +1052,121 @@
     });
     chatInp.addEventListener('keypress', e => { if(e.key === 'Enter') chatSend.click(); });
 
-    function showNotif(msg) { alert(msg); }
+    function sendPresetMessage(text) {
+        addMsg(text, 'user');
+        setTimeout(() => botReply(text), 300);
+    }
+
+    const levelsData = [
+        { id: 1, title: "Niveau 1 : Fondamentaux", description: "Maîtrise des bases : variables, types, conditions simples", unlocked: true, completed: false, progress: 0, quiz: { question: "Qu'est-ce qu'une variable ?", options: ["Une valeur qui change", "Un conteneur de données", "Une fonction", "Une classe"], correct: 1, explanation: "Une variable est un conteneur qui stocke une donnée." } },
+        { id: 2, title: "Niveau 2 : Structures de contrôle", description: "Boucles, conditions avancées, logique algorithmique", unlocked: false, completed: false, progress: 0, quiz: { question: "Que fait 'for i in range(3):' ?", options: ["Itère 3 fois", "Crée une variable i=3", "Boucle infinie", "Erreur"], correct: 0, explanation: "range(3) génère 0,1,2 → 3 itérations." } },
+        { id: 3, title: "Niveau 3 : Fonctions et modularité", description: "Création de fonctions, paramètres, retour, portée", unlocked: false, completed: false, progress: 0, quiz: { question: "Quel mot-clé définit une fonction en Python ?", options: ["func", "define", "def", "function"], correct: 2, explanation: "Le mot-clé est 'def'." } },
+        { id: 4, title: "Niveau 4 : Structures de données", description: "Listes, dictionnaires, tuples, compréhensions", unlocked: false, completed: false, progress: 0, quiz: { question: "Quelle structure est mutable ?", options: ["Tuple", "String", "Liste", "Int"], correct: 2, explanation: "La liste est mutable (modifiable)." } }
+    ];
+    let currentLevelQuiz = null;
+
+    function renderLevels() {
+        const container = document.getElementById('levelsContainer');
+        if (!container) return;
+        const completedCount = levelsData.filter(l => l.completed).length;
+        const totalProgress = (completedCount / levelsData.length) * 100;
+        document.getElementById('globalLevelProgress').innerText = Math.floor(totalProgress);
+
+        container.innerHTML = levelsData.map(level => `
+            <div class="level-card ${level.completed ? 'completed' : (level.unlocked ? '' : 'locked')}" data-level-id="${level.id}">
+                <div class="level-header">
+                    <div class="level-title">
+                        <i class="fas ${level.completed ? 'fa-check-circle' : (level.unlocked ? 'fa-play-circle' : 'fa-lock')}" style="color: ${level.completed ? 'var(--success)' : (level.unlocked ? 'var(--accent)' : 'var(--text-muted)')}"></i>
+                        ${level.title}
+                        ${level.completed ? '<span class="level-badge">✅ Complété</span>' : (level.unlocked ? '<span class="level-badge">🔓 Débloqué</span>' : '<span class="level-badge">🔒 Verrouillé</span>')}
+                    </div>
+                    <div class="level-status ${level.completed ? 'completed' : (level.unlocked ? '' : 'locked')}">
+                        ${level.completed ? 'Terminé' : (level.unlocked ? `${level.progress}% complété` : 'À débloquer')}
+                    </div>
+                </div>
+                <div class="level-description">${level.description}</div>
+                ${level.unlocked && !level.completed ? `
+                    <div class="level-progress">
+                        <div class="level-progress-bar"><div class="level-progress-fill" style="width: ${level.progress}%"></div></div>
+                    </div>
+                    <div class="level-actions">
+                        <button class="btn-primary" onclick="startLevelQuiz(${level.id})" style="padding: 8px 20px; font-size: 13px;">
+                            <i class="fas fa-question-circle"></i> Quiz de validation
+                        </button>
+                        <button class="btn-secondary" onclick="showNotification('Voir les ressources du ${level.title}...')" style="padding: 8px 20px; font-size: 13px;">
+                            <i class="fas fa-book-open"></i> Ressources
+                        </button>
+                    </div>
+                ` : (level.completed ? `
+                    <div class="level-actions">
+                        <button class="btn-secondary" onclick="showNotification('Réviser le ${level.title}...')" style="padding: 8px 20px;">
+                            <i class="fas fa-redo"></i> Réviser
+                        </button>
+                    </div>
+                ` : `
+                    <div class="level-actions">
+                        <button class="btn-secondary" disabled style="opacity: 0.5; cursor: not-allowed;">
+                            <i class="fas fa-lock"></i> Complétez le niveau précédent
+                        </button>
+                    </div>
+                `)}
+                ${currentLevelQuiz === level.id ? renderQuizInline(level) : ''}
+            </div>
+        `).join('');
+    }
+
+    function renderQuizInline(level) {
+        const q = level.quiz;
+        return `
+            <div class="quiz-mini" id="quiz-mini-${level.id}">
+                <div style="font-weight: 600; margin-bottom: 12px;">📝 Quiz : ${q.question}</div>
+                <div class="quiz-mini-options" id="quiz-options-${level.id}">
+                    ${q.options.map((opt, idx) => `<label><input type="radio" name="quiz-${level.id}" value="${idx}"> ${opt}</label>`).join('')}
+                </div>
+                <div style="margin-top: 12px; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="submitLevelQuiz(${level.id})" style="padding: 6px 18px;">Valider</button>
+                    <button class="btn-secondary" onclick="cancelLevelQuiz()" style="padding: 6px 18px;">Annuler</button>
+                </div>
+                <div id="quiz-feedback-${level.id}" style="margin-top: 12px; font-size: 13px;"></div>
+            </div>
+        `;
+    }
+
+    function startLevelQuiz(levelId) {
+        const level = levelsData.find(l => l.id === levelId);
+        if (!level || level.completed) return;
+        if (!level.unlocked) { showNotification("Ce niveau est verrouillé ! Complétez le niveau précédent d'abord."); return; }
+        currentLevelQuiz = levelId;
+        renderLevels();
+    }
+
+    function cancelLevelQuiz() {
+        currentLevelQuiz = null;
+        renderLevels();
+    }
+
+    function submitLevelQuiz(levelId) {
+        const level = levelsData.find(l => l.id === levelId);
+        if (!level) return;
+        const selected = document.querySelector(`input[name="quiz-${levelId}"]:checked`);
+        if (!selected) { showNotification("Veuillez sélectionner une réponse !"); return; }
+        const isCorrect = parseInt(selected.value, 10) === level.quiz.correct;
+        const feedbackDiv = document.getElementById(`quiz-feedback-${levelId}`);
+        if (isCorrect) {
+            level.completed = true;
+            level.progress = 100;
+            const nextLevel = levelsData.find(l => l.id === levelId + 1);
+            if (nextLevel) nextLevel.unlocked = true;
+            feedbackDiv.innerHTML = `<span style="color: var(--success);">✅ Bravo ! ${level.quiz.explanation}</span>`;
+            showNotification(`Félicitations ! Vous avez complété ${level.title} !`);
+            currentLevelQuiz = null;
+            renderLevels();
+        } else {
+            feedbackDiv.innerHTML = `<span style="color: var(--danger);">❌ Mauvaise réponse. ${level.quiz.explanation}</span>`;
+        }
+    }
+
+    function showNotif(msg) { showNotification(msg); }
     document.querySelectorAll('.video-card').forEach(c => c.addEventListener('click', () => showNotif('Lecture vidéo')));
     
     </script>
