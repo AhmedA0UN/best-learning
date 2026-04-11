@@ -664,7 +664,7 @@
 
             <!-- ===== PAGE: TOUTES LES VIDÉOS ===== -->
             <div class="page-container" id="page-videos">
-                <div class="content-header"><div class="page-title"><h1><i class="fas fa-video"></i> Toutes les Vidéos Courtes</h1><p>Explications, applications réelles, cours avancés et guides projets</p></div><div class="filter-tabs"><span class="filter-tab active">Toutes</span><span class="filter-tab">Dev</span><span class="filter-tab">Économie</span><span class="filter-tab">Soft Skills</span><span class="filter-tab"><a href="prototype.html" target="_blank">Vu complète</a></span></div></div>
+                <div class="content-header"><div class="page-title"><h1><i class="fas fa-video"></i> Toutes les Vidéos Courtes</h1><p>Explications, applications réelles, cours avancés et guides projets</p></div><div class="filter-tabs"><span class="filter-tab active">Toutes</span><span class="filter-tab">Dev</span><span class="filter-tab">Économie</span><span class="filter-tab">Soft Skills</span><span class="filter-tab"><a href="prototype1.html" target="_blank">Vu complète</a></span></div></div>
                 <div class="video-grid">
                     <div class="video-card"><div class="video-thumbnail"><div class="video-badge"><i class="fas fa-flask"></i> Application Réelle</div><div class="play-btn"><i class="fas fa-play"></i></div><div class="video-duration">3:45</div></div><div class="video-details"><div class="video-title">Microservices : Communication asynchrone avec RabbitMQ</div><div class="video-meta"><span>Dr. Amine Ben Ali</span><span class="category-badge">Dev Avancé</span></div><div class="video-description">Implémentation d'une architecture événementielle avec RabbitMQ dans un projet e-commerce.</div></div></div>
                     <div class="video-card"><div class="video-thumbnail"><div class="video-badge"><i class="fas fa-chart-bar"></i> Explication</div><div class="play-btn"><i class="fas fa-play"></i></div><div class="video-duration">5:20</div></div><div class="video-details"><div class="video-title">Le PIB : Définition, Calcul et Limites</div><div class="video-meta"><span>Pr. Leila Mansour</span><span class="category-badge">Macroéconomie</span></div><div class="video-description">Comprendre le Produit Intérieur Brut avec des exemples concrets de l'économie tunisienne.</div></div></div>
@@ -755,7 +755,6 @@
             <!-- ===== PAGE: COLLABORATION ===== -->
             <div class="page-container" id="page-collaboration">
                 <div class="category-header"><h1><i class="fas fa-users"></i> Espace Collaboration</h1><p>Étudiants ↔ Étudiants · Étudiants ↔ Enseignants · Enseignants ↔ Enseignants</p></div>
-                <div style="margin: 0 0 20px 0;"><button class="btn-secondary" onclick="openCollaborationDashboard()"><i class="fas fa-chart-line"></i> Tableau Collaboration</button></div>
                 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:36px;">
                     <div class="widget" style="text-align:center;"><i class="fas fa-user-graduate" style="font-size:56px;color:var(--accent);margin-bottom:20px;"></i><h3 style="margin-bottom:12px;">Étudiants + Étudiants</h3><p style="color:var(--text-secondary);margin:16px 0;">Groupes d'étude, partage de notes, projets collaboratifs</p><button class="btn-primary" onclick="showNotification('Explorer les groupes...')">Rejoindre</button></div>
                     <div class="widget" style="text-align:center;"><i class="fas fa-chalkboard" style="font-size:56px;color:var(--accent);margin-bottom:20px;"></i><h3 style="margin-bottom:12px;">Étudiants + Enseignants</h3><p style="color:var(--text-secondary);margin:16px 0;">Sessions Q/R, mentorat, suivi de projets</p><button class="btn-primary" onclick="showNotification('Voir les sessions...')">Participer</button></div>
@@ -1788,14 +1787,7 @@
                             <span class="ai-suggestion-chip" onclick="sendPresetMessage('Aide-moi à organiser mon temps d\'étude.')">Organisation</span>
                             <span class="ai-suggestion-chip" onclick="sendPresetMessage('Je veux une technique pour réduire mon stress.')">Gestion du stress</span>
                         </div>
-                        <div class="chat-input"><input type="text" id="chatInputModule" placeholder="Écris ton message..."><button id="chatVoiceModule" type="button">🎤</button><button id="chatSendModule">Envoyer</button></div>
-                        <div style="display:flex; flex-wrap:wrap; gap:10px; padding:12px 20px 20px;">
-                            <button class="btn-secondary" type="button" onclick="showMentorHistory()">Historique</button>
-                            <button class="btn-secondary" type="button" onclick="clearMentorChat()">Effacer</button>
-                            <button class="btn-secondary" type="button" onclick="exportMentorChat()">Exporter</button>
-                            <button class="btn-secondary" type="button" onclick="mentorQuickPrompt('orientation')">Orientation</button>
-                            <button class="btn-secondary" type="button" onclick="mentorQuickPrompt('stress')">Stress</button>
-                        </div>
+                        <div class="chat-input"><input type="text" id="chatInputModule" placeholder="Écris ton message..."><button id="chatSendModule">Envoyer</button></div>
                     </div>
                 </div>
 
@@ -1809,10 +1801,6 @@
                                 <p style="margin:4px 0 0;">Progresse étape par étape, débloque chaque palier</p>
                             </div>
                             <div><span class="badge" style="background: var(--accent); color: var(--primary);">Progression: <span id="globalLevelProgress">0</span>%</span></div>
-                        </div>
-                        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;">
-                            <button class="btn-secondary" onclick="viewLevelHistory()">Historique</button>
-                            <button class="btn-secondary" onclick="resetLevelProgress()">Réinitialiser</button>
                         </div>
                     </div>
                     <div id="levelsContainer"></div>
@@ -3280,12 +3268,11 @@
             const modal = document.getElementById('modal');
             const modalTitle = document.getElementById('modalTitle');
             const modalMessage = document.getElementById('modalMessage');
-            const processedMessage = processCollaborationNotification(message);
             
             modalTitle.textContent = 'Information';
-            modalMessage.textContent = processedMessage;
+            modalMessage.textContent = message;
             modal.classList.add('active');
-            appendNotificationHistory(processedMessage);
+            appendNotificationHistory(message);
             
             setTimeout(() => {
                 modal.classList.remove('active');
@@ -3344,26 +3331,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             navItems.forEach(item => item.addEventListener('click', function(e) { e.preventDefault(); if(this.dataset.page) switchPage(this.dataset.page); }));
-            document.querySelectorAll('.filter-tab').forEach(tab => tab.addEventListener('click', function() {
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                if (document.getElementById('page-clubs')?.classList.contains('active-page')) {
-                    applyClubsFilter(this.textContent);
-                }
-                showNotification(`Filtre appliqué: ${this.textContent}`);
-            }));
-
-            document.addEventListener('click', function(event) {
-                const joinBtn = event.target.closest('#page-collaboration .collab-room .join-btn');
-                if (!joinBtn) return;
-                const roomName = joinBtn.closest('.collab-room')?.querySelector('.room-details h4')?.textContent?.trim();
-                if (!roomName) return;
-                const state = readCollaborationState();
-                if (!state.joinedRooms.includes(roomName)) {
-                    state.joinedRooms.push(roomName);
-                    writeCollaborationState(state);
-                }
-            });
+            document.querySelectorAll('.filter-tab').forEach(tab => tab.addEventListener('click', function() { document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active')); this.classList.add('active'); showNotification(`Filtre appliqué: ${this.textContent}`); }));
         });
         function switchToClubs() {
             document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
@@ -3397,141 +3365,6 @@
 
         function writeStoredJson(key, value) {
             localStorage.setItem(key, JSON.stringify(value));
-        }
-
-        const collaborationStorageKey = 'superedu_collaboration_state';
-
-        function readCollaborationState() {
-            return readStoredJson(collaborationStorageKey, {
-                exploredGroups: 0,
-                teacherSessionsViewed: 0,
-                teacherSpacesAccessed: 0,
-                joinedRooms: [],
-                spacesCreated: 0,
-                joinedClubs: [],
-                clubInfosViewed: 0,
-                eventsRegistered: [],
-                psychologistAppointments: [],
-                collectiveSessions: 0,
-                genericSessionJoins: 0,
-                supportBookings: 0,
-                updatedAt: null
-            });
-        }
-
-        function writeCollaborationState(state) {
-            state.updatedAt = new Date().toISOString();
-            writeStoredJson(collaborationStorageKey, state);
-        }
-
-        function processCollaborationNotification(message) {
-            const state = readCollaborationState();
-
-            if (message === 'Explorer les groupes...') {
-                state.exploredGroups += 1;
-                writeCollaborationState(state);
-                return `Groupes explorés. Total explorations: ${state.exploredGroups}.`;
-            }
-
-            if (message === 'Voir les sessions...') {
-                state.teacherSessionsViewed += 1;
-                writeCollaborationState(state);
-                return `Sessions étudiants-enseignants consultées (${state.teacherSessionsViewed}).`;
-            }
-
-            if (message === 'Espace enseignants...') {
-                state.teacherSpacesAccessed += 1;
-                writeCollaborationState(state);
-                return `Espace enseignants ouvert (${state.teacherSpacesAccessed} accès).`;
-            }
-
-            if (message === 'Rejoindre la salle...' || message === 'Rejoindre la session...') {
-                state.genericSessionJoins += 1;
-                writeCollaborationState(state);
-                return `Inscription à la session confirmée. Sessions rejointes: ${state.genericSessionJoins}.`;
-            }
-
-            if (message === 'Création d\'un nouvel espace...' || message === 'Création d\'un nouvel espace...') {
-                state.spacesCreated += 1;
-                writeCollaborationState(state);
-                return `Nouvel espace de collaboration créé (${state.spacesCreated}).`;
-            }
-
-            if (message.startsWith('Demande d\'adhésion')) {
-                const clubName = message.replace('Demande d\'adhésion au ', '').replace('Demande d\'adhésion à ', '').replace(' envoyée !', '').trim();
-                if (clubName && !state.joinedClubs.includes(clubName)) {
-                    state.joinedClubs.push(clubName);
-                }
-                writeCollaborationState(state);
-                return `${clubName || 'Club'}: demande d'adhésion envoyée. Clubs suivis: ${state.joinedClubs.length}.`;
-            }
-
-            if (message.includes('Plus d\'informations')) {
-                state.clubInfosViewed += 1;
-                writeCollaborationState(state);
-                return `Fiche d'information affichée. Consultations: ${state.clubInfosViewed}.`;
-            }
-
-            if (message.startsWith('Inscription au ') || message.startsWith('Inscription à l\'') || message.startsWith('Inscription à la ') || message === 'Inscription à la séance...') {
-                state.collectiveSessions += 1;
-                state.eventsRegistered.unshift({ title: message.replace('Inscription ', '').replace('...', '').trim(), date: new Date().toISOString() });
-                state.eventsRegistered = state.eventsRegistered.slice(0, 25);
-                writeCollaborationState(state);
-                return `Inscription confirmée. Événements/séances enregistrés: ${state.collectiveSessions}.`;
-            }
-
-            if (message.startsWith('Prendre RDV avec')) {
-                const doctor = message.replace('Prendre RDV avec ', '').replace('...', '').trim();
-                state.psychologistAppointments.unshift({ doctor, date: new Date().toISOString() });
-                state.psychologistAppointments = state.psychologistAppointments.slice(0, 20);
-                writeCollaborationState(state);
-                return `Demande de rendez-vous enregistrée avec ${doctor}.`;
-            }
-
-            if (message === 'Réservation d\'une séance...') {
-                state.supportBookings += 1;
-                writeCollaborationState(state);
-                return `Séance réservée. Réservations de soutien: ${state.supportBookings}.`;
-            }
-
-            return message;
-        }
-
-        function openCollaborationDashboard() {
-            const state = readCollaborationState();
-            const html = `
-                <div style="display:grid; gap:10px; text-align:left;">
-                    <div><strong>Groupes explorés:</strong> ${state.exploredGroups}</div>
-                    <div><strong>Sessions enseignants consultées:</strong> ${state.teacherSessionsViewed}</div>
-                    <div><strong>Sessions rejointes:</strong> ${state.genericSessionJoins}</div>
-                    <div><strong>Salles rejointes:</strong> ${state.joinedRooms.length ? state.joinedRooms.join(', ') : 'Aucune'}</div>
-                    <div><strong>Espaces créés:</strong> ${state.spacesCreated}</div>
-                    <div><strong>Clubs suivis:</strong> ${state.joinedClubs.length ? state.joinedClubs.join(', ') : 'Aucun'}</div>
-                    <div><strong>Inscriptions événements/séances:</strong> ${state.collectiveSessions}</div>
-                    <div><strong>Demandes RDV psychologue:</strong> ${state.psychologistAppointments.length}</div>
-                    <div style="font-size:12px; color:var(--text-muted);">Dernière mise à jour: ${state.updatedAt ? new Date(state.updatedAt).toLocaleString('fr-FR') : 'jamais'}</div>
-                </div>
-            `;
-            showModal('Tableau Collaboration', html);
-        }
-
-        function applyClubsFilter(label) {
-            const clubCards = document.querySelectorAll('#page-clubs .club-card');
-            if (!clubCards.length) return;
-            const normalized = (label || '').trim().toLowerCase();
-            clubCards.forEach(card => {
-                if (normalized === 'tous') {
-                    card.style.display = '';
-                    return;
-                }
-                const categoryText = (card.querySelector('.club-category')?.textContent || '').toLowerCase();
-                const matches =
-                    (normalized === 'tech' && (categoryText.includes('tech') || categoryText.includes('innovation'))) ||
-                    (normalized === 'culture' && categoryText.includes('culture')) ||
-                    (normalized === 'sport' && categoryText.includes('sport')) ||
-                    (normalized === 'social' && (categoryText.includes('social') || categoryText.includes('leadership') || categoryText.includes('international')));
-                card.style.display = matches ? '' : 'none';
-            });
         }
 
         function appendNotificationHistory(message) {
@@ -3953,27 +3786,10 @@
         });
         function sendAIMessage() {
             const input = document.getElementById('aiInput');
-            const preview = document.getElementById('chatPreview');
-            const text = input.value.trim();
-            if (!text) {
-                showNotification('Veuillez entrer une question pour SuperBot.');
-                return;
-            }
-
-            const lower = text.toLowerCase();
-            let reply = 'Je peux vous aider sur les révisions, l’orientation, le stress ou la planification. Reformulez votre besoin si nécessaire.';
-            if (lower.includes('stress') || lower.includes('anxiété')) reply = 'Respirez lentement pendant 30 secondes puis définissez une petite action réalisable maintenant.';
-            else if (lower.includes('révision') || lower.includes('cours')) reply = 'Dites-moi la matière et la date de l’examen, je vous prépare un plan de révision précis.';
-            else if (lower.includes('orientation') || lower.includes('métier')) reply = 'Décrivez votre objectif métier et vos compétences actuelles, je vous aiderai à clarifier la suite.';
-            else if (lower.includes('cv') || lower.includes('entretien')) reply = 'Le module Simulation peut générer un CV et une roadmap, et je peux aussi vous aider à formuler vos points forts.';
-
-            if (preview) {
-                preview.innerHTML = `<div style="margin-bottom:8px;"><strong>Vous:</strong> ${text}</div><div style="background:#10b981; color:white; padding:8px; border-radius:8px;"><strong>IA:</strong> ${reply}</div>`;
-            }
-            input.value = '';
-            showNotification('Réponse IA générée !');
+            if(input.value.trim()) { showNotification(`SuperBot: Je traite votre question "${input.value}"...`); input.value = ''; }
+            else showNotification('Veuillez entrer une question pour SuperBot.');
         }
-        function startVoiceInput(targetId = 'aiInput') {
+        function startVoiceInput() {
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
                 showNotification('La reconnaissance vocale n\'est pas supportée par votre navigateur.');
                 return;
@@ -3989,8 +3805,7 @@
             
             recognition.onresult = function(event) {
                 const transcript = event.results[0][0].transcript;
-                const target = document.getElementById(targetId);
-                if (target) target.value = transcript;
+                document.getElementById('aiInput').value = transcript;
                 showNotification('Message vocal reconnu: "' + transcript + '"');
             };
             
@@ -4962,181 +4777,35 @@
     const chatDiv = document.getElementById('chatMessagesModule');
     const chatInp = document.getElementById('chatInputModule');
     const chatSend = document.getElementById('chatSendModule');
-    const chatVoiceBtn = document.getElementById('chatVoiceModule');
-    const mentorChatKey = 'superedu_mentor_chat_history';
-
-    function sanitizeMentorText(text) {
-        return String(text)
-            .replaceAll('&', '&amp;')
-            .replaceAll('<', '&lt;')
-            .replaceAll('>', '&gt;')
-            .replaceAll('"', '&quot;');
-    }
-
-    function getMentorHistory() {
-        try {
-            return JSON.parse(localStorage.getItem(mentorChatKey) || '[]');
-        } catch (error) {
-            return [];
-        }
-    }
-
-    function saveMentorHistory(history) {
-        localStorage.setItem(mentorChatKey, JSON.stringify(history.slice(-60)));
-    }
-
-    function persistMentorMessage(text, sender) {
-        const history = getMentorHistory();
-        history.push({ text, sender, timestamp: new Date().toISOString() });
-        saveMentorHistory(history);
-    }
-
     function addMsg(text, sender) {
         const d = document.createElement('div');
         d.className = `message ${sender}`;
-        d.innerHTML = `<div class="bubble">${sanitizeMentorText(text)}</div>`;
+        d.innerHTML = `<div class="bubble">${text}</div>`;
         chatDiv.appendChild(d);
         chatDiv.scrollTop = chatDiv.scrollHeight;
     }
-
-    function mentorReply(userMsg) {
-        const message = userMsg.toLowerCase();
-        const responses = [
-            { keywords: ['stress', 'anxiété', 'angoisse', 'panique'], reply: "Respire 4 secondes, expire 6 secondes, puis note une seule action simple à faire maintenant. Si tu veux, je peux te faire un plan anti-stress de 10 minutes." },
-            { keywords: ['révision', 'cours', 'exam', 'examen', 'quiz'], reply: "Je peux te proposer un plan de révision ciblé. Donne-moi la matière, la date de l'examen et ton niveau actuel." },
-            { keywords: ['orientation', 'métier', 'emploi', 'carrière'], reply: "Je peux t'aider à clarifier ton parcours. Décris ton domaine, ton objectif et les compétences que tu veux valoriser." },
-            { keywords: ['temps', 'organisation', 'planning', 'agenda'], reply: "On peut construire un planning hebdomadaire avec blocs de travail, pauses et révision espacée. Dis-moi tes heures disponibles." },
-            { keywords: ['motivation', 'fatigue', 'baisse', 'découragé'], reply: "Commence par une tâche de 5 minutes. Le plus dur est de relancer l'élan, pas de tout résoudre d'un coup." },
-            { keywords: ['cv', 'linkedin', 'entretien', 'stage'], reply: "Le module Simulation peut générer un CV et une roadmap, mais je peux aussi t'aider à formuler tes points forts ici." }
-        ];
-
-        const matched = responses.find(item => item.keywords.some(keyword => message.includes(keyword)));
-        if (matched) return matched.reply;
-
-        const questionHints = [
-            'Tu peux me demander un plan de révision, un conseil anti-stress, ou une aide d’orientation.',
-            'Si tu veux, décris ta difficulté en une phrase et je la transforme en action concrète.',
-            'Donne-moi un sujet précis: matière, échéance, ou objectif professionnel.'
-        ];
-        return questionHints[Math.floor(Math.random() * questionHints.length)];
-    }
-
-    function appendMentorExchange(userText, botText) {
-        addMsg(userText, 'user');
-        persistMentorMessage(userText, 'user');
-        setTimeout(() => {
-            addMsg(botText, 'bot');
-            persistMentorMessage(botText, 'bot');
-        }, 250);
-    }
-
-    function sendMentorMessage(text) {
-        const trimmed = (text || '').trim();
-        if (!trimmed) {
-            showNotification('Veuillez écrire un message pour le mentor.');
-            return;
-        }
-        const reply = mentorReply(trimmed);
-        appendMentorExchange(trimmed, reply);
+    function botReply(userMsg) {
+        let reply = '';
+        const m = userMsg.toLowerCase();
+        if(m.includes('stress') || m.includes('anxiété')) reply = "Respire profondément. Fixe-toi un petit objectif réalisable aujourd'hui.";
+        else if(m.includes('révision') || m.includes('cours')) reply = "Sur quel chapitre veux-tu te concentrer ? Je te propose un résumé.";
+        else if(m.includes('orientation') || m.includes('métier')) reply = "Utilise le module Simulation pour un parcours personnalisé !";
+        else reply = "Je suis là pour t'aider. Dis-moi ce qui te préoccupe (stress, révision, orientation).";
+        setTimeout(() => addMsg(reply, 'bot'), 300);
     }
     chatSend.addEventListener('click', () => {
         const txt = chatInp.value.trim();
         if(!txt) return;
+        addMsg(txt, 'user');
         chatInp.value = '';
-        sendMentorMessage(txt);
+        botReply(txt);
     });
     chatInp.addEventListener('keypress', e => { if(e.key === 'Enter') chatSend.click(); });
-    chatVoiceBtn?.addEventListener('click', () => startVoiceInput('chatInputModule'));
 
     function sendPresetMessage(text) {
-        sendMentorMessage(text);
+        addMsg(text, 'user');
+        setTimeout(() => botReply(text), 300);
     }
-
-    function showMentorHistory() {
-        const history = getMentorHistory();
-        const content = history.length ? history.map(item => `
-            <div style="padding:10px; background:${item.sender === 'bot' ? 'var(--bg-secondary)' : '#eff6ff'}; border-radius:12px; margin-bottom:8px; text-align:left;">
-                <strong>${item.sender === 'bot' ? 'Mentor' : 'Vous'} :</strong> ${sanitizeMentorText(item.text)}
-                <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${new Date(item.timestamp).toLocaleString('fr-FR')}</div>
-            </div>
-        `).join('') : '<div style="color:var(--text-muted);">Aucun message enregistré.</div>';
-        showModal('Historique du Mentor IA', content);
-    }
-
-    function clearMentorChat() {
-        localStorage.removeItem(mentorChatKey);
-        if (chatDiv) {
-            chatDiv.innerHTML = '<div class="message bot"><div class="bubble">🤖 Historique effacé. Parle-moi de tes difficultés (stress, révision, orientation).</div></div>';
-        }
-        showNotification('Historique du mentor effacé.');
-    }
-
-    function exportMentorChat() {
-        const history = getMentorHistory();
-        if (!history.length) {
-            showNotification('Aucun échange à exporter.');
-            return;
-        }
-        const text = history.map(item => `${item.sender === 'bot' ? 'Mentor' : 'Vous'}: ${item.text}`).join('\n');
-        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'mentor-ia-historique.txt';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        URL.revokeObjectURL(url);
-        showNotification('Historique du mentor exporté.');
-    }
-
-    function mentorQuickPrompt(topic) {
-        const prompts = {
-            orientation: 'Je veux clarifier mon orientation et mes choix de métier.',
-            stress: 'Je me sens stressé et j’ai besoin d’un plan simple pour me calmer.',
-            revision: 'Aide-moi à construire un plan de révision efficace pour mes examens.',
-            time: 'Aide-moi à organiser mon temps d’étude cette semaine.'
-        };
-        sendMentorMessage(prompts[topic] || 'Je veux un conseil concret pour avancer aujourd’hui.');
-    }
-
-    function restoreMentorHistory() {
-        if (!chatDiv) return;
-        const history = getMentorHistory();
-        if (!history.length) return;
-        chatDiv.innerHTML = '';
-        history.slice(-20).forEach(item => addMsg(item.text, item.sender));
-    }
-
-    function startMentorVoiceInput() {
-        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-            showNotification('La reconnaissance vocale n\'est pas supportée par votre navigateur.');
-            return;
-        }
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'fr-FR';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-        recognition.onstart = function() {
-            showNotification('Écoute en cours... Parlez maintenant.');
-        };
-
-        recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript;
-            if (chatInp) chatInp.value = transcript;
-            showNotification('Message vocal reconnu: "' + transcript + '"');
-        };
-
-        recognition.onerror = function(event) {
-            showNotification('Erreur de reconnaissance vocale: ' + event.error);
-        };
-
-        recognition.start();
-    }
-
-    chatVoiceBtn?.addEventListener('click', startMentorVoiceInput);
-    restoreMentorHistory();
 
     const levelsData = [
         { id: 1, title: "Niveau 1 : Fondamentaux", description: "Maîtrise des bases : variables, types, conditions simples", unlocked: true, completed: false, progress: 0, quiz: { question: "Qu'est-ce qu'une variable ?", options: ["Une valeur qui change", "Un conteneur de données", "Une fonction", "Une classe"], correct: 1, explanation: "Une variable est un conteneur qui stocke une donnée." }, resources: [{title: "Guide des variables en Python", url: "#", type: "pdf"}, {title: "Vidéo : Introduction aux types de données", url: "#", type: "video"}, {title: "Exercices pratiques", url: "#", type: "exercise"}] },
@@ -5145,130 +4814,6 @@
         { id: 4, title: "Niveau 4 : Structures de données", description: "Listes, dictionnaires, tuples, compréhensions", unlocked: false, completed: false, progress: 0, quiz: { question: "Quelle structure est mutable ?", options: ["Tuple", "String", "Liste", "Int"], correct: 2, explanation: "La liste est mutable (modifiable)." }, resources: [{title: "Structures de données avancées", url: "#", type: "pdf"}, {title: "Vidéo : Dictionnaires et listes", url: "#", type: "video"}, {title: "Manipulations de données", url: "#", type: "exercise"}] }
     ];
     let currentLevelQuiz = null;
-    const levelProgressKey = 'superedu_level_progress';
-    const levelHistoryKey = 'superedu_level_history';
-
-    function getDefaultLevelState() {
-        return levelsData.map(level => ({
-            id: level.id,
-            completed: level.id === 1 ? level.completed : false,
-            unlocked: level.id === 1 ? true : false,
-            progress: level.id === 1 ? level.progress : 0
-        }));
-    }
-
-    function getStoredLevelState() {
-        try {
-            const parsed = JSON.parse(localStorage.getItem(levelProgressKey) || 'null');
-            return Array.isArray(parsed) ? parsed : getDefaultLevelState();
-        } catch (error) {
-            return getDefaultLevelState();
-        }
-    }
-
-    function saveStoredLevelState() {
-        const state = levelsData.map(level => ({
-            id: level.id,
-            completed: level.completed,
-            unlocked: level.unlocked,
-            progress: level.progress
-        }));
-        localStorage.setItem(levelProgressKey, JSON.stringify(state));
-    }
-
-    function syncLevelStateFromStorage() {
-        const storedState = getStoredLevelState();
-        levelsData.forEach(level => {
-            const stored = storedState.find(item => item.id === level.id);
-            if (stored) {
-                level.completed = !!stored.completed;
-                level.unlocked = !!stored.unlocked;
-                level.progress = Number(stored.progress) || 0;
-            }
-        });
-        if (!levelsData[0].unlocked) {
-            levelsData[0].unlocked = true;
-        }
-    }
-
-    function logLevelHistory(entry) {
-        let history = [];
-        try {
-            history = JSON.parse(localStorage.getItem(levelHistoryKey) || '[]');
-        } catch (error) {
-            history = [];
-        }
-        history.unshift(entry);
-        localStorage.setItem(levelHistoryKey, JSON.stringify(history.slice(0, 40)));
-    }
-
-    function getLevelHistory() {
-        try {
-            return JSON.parse(localStorage.getItem(levelHistoryKey) || '[]');
-        } catch (error) {
-            return [];
-        }
-    }
-
-    function completeLevel(levelId, passed = true) {
-        const level = levelsData.find(item => item.id === levelId);
-        if (!level) return;
-        if (passed) {
-            level.completed = true;
-            level.progress = 100;
-            const nextLevel = levelsData.find(item => item.id === levelId + 1);
-            if (nextLevel) nextLevel.unlocked = true;
-            logLevelHistory({ levelId, title: level.title, action: 'completed', date: new Date().toISOString() });
-            showNotification(`Félicitations ! Vous avez complété ${level.title} !`);
-        } else {
-            level.progress = Math.min(90, Math.max(level.progress, 50));
-            logLevelHistory({ levelId, title: level.title, action: 'failed', date: new Date().toISOString() });
-            showNotification(`Continuez à travailler ${level.title} avant de retenter le quiz.`);
-        }
-        saveStoredLevelState();
-        currentLevelQuiz = null;
-        renderLevels();
-    }
-
-    function reviewLevel(levelId) {
-        const level = levelsData.find(item => item.id === levelId);
-        if (!level) return;
-        level.completed = false;
-        level.progress = Math.max(60, level.progress || 0);
-        currentLevelQuiz = levelId;
-        logLevelHistory({ levelId, title: level.title, action: 'review', date: new Date().toISOString() });
-        saveStoredLevelState();
-        renderLevels();
-        showNotification(`Révision relancée pour ${level.title}.`);
-    }
-
-    function viewLevelHistory() {
-        const history = getLevelHistory();
-        const content = history.length ? history.map(entry => `
-            <div style="padding:12px; background:var(--bg-secondary); border-radius:12px; margin-bottom:10px; text-align:left;">
-                <strong>${entry.title}</strong>
-                <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${entry.action} · ${new Date(entry.date).toLocaleString('fr-FR')}</div>
-            </div>
-        `).join('') : '<div style="color:var(--text-muted);">Aucun historique disponible.</div>';
-        showModal('Historique des niveaux', content);
-    }
-
-    function resetLevelProgress() {
-        const baseState = getDefaultLevelState();
-        levelsData.forEach(level => {
-            const base = baseState.find(item => item.id === level.id);
-            level.completed = base.completed;
-            level.unlocked = base.unlocked;
-            level.progress = base.progress;
-        });
-        currentLevelQuiz = null;
-        localStorage.removeItem(levelProgressKey);
-        localStorage.removeItem(levelHistoryKey);
-        renderLevels();
-        showNotification('Progression des niveaux réinitialisée.');
-    }
-
-    syncLevelStateFromStorage();
 
     function renderLevels() {
         const container = document.getElementById('levelsContainer');
@@ -5304,11 +4849,8 @@
                     </div>
                 ` : (level.completed ? `
                     <div class="level-actions">
-                        <button class="btn-secondary" onclick="reviewLevel(${level.id})" style="padding: 8px 20px;">
+                        <button class="btn-secondary" onclick="showNotification('Réviser le ${level.title}...')" style="padding: 8px 20px;">
                             <i class="fas fa-redo"></i> Réviser
-                        </button>
-                        <button class="btn-secondary" onclick="viewLevelHistory()" style="padding: 8px 20px;">
-                            <i class="fas fa-clock-rotate-left"></i> Historique
                         </button>
                     </div>
                 ` : `
@@ -5346,7 +4888,6 @@
         if (!level.unlocked) { showNotification("Ce niveau est verrouillé ! Complétez le niveau précédent d'abord."); return; }
         currentLevelQuiz = levelId;
         renderLevels();
-        showNotification(`Quiz de ${level.title} prêt. Répondez correctement pour débloquer le niveau suivant.`);
     }
 
     function cancelLevelQuiz() {
@@ -5362,13 +4903,16 @@
         const isCorrect = parseInt(selected.value, 10) === level.quiz.correct;
         const feedbackDiv = document.getElementById(`quiz-feedback-${levelId}`);
         if (isCorrect) {
+            level.completed = true;
+            level.progress = 100;
+            const nextLevel = levelsData.find(l => l.id === levelId + 1);
+            if (nextLevel) nextLevel.unlocked = true;
             feedbackDiv.innerHTML = `<span style="color: var(--success);">✅ Bravo ! ${level.quiz.explanation}</span>`;
-            completeLevel(levelId, true);
+            showNotification(`Félicitations ! Vous avez complété ${level.title} !`);
+            currentLevelQuiz = null;
+            renderLevels();
         } else {
             feedbackDiv.innerHTML = `<span style="color: var(--danger);">❌ Mauvaise réponse. ${level.quiz.explanation}</span>`;
-            level.progress = Math.max(level.progress, 45);
-            saveStoredLevelState();
-            logLevelHistory({ levelId, title: level.title, action: 'retry', date: new Date().toISOString() });
         }
     }
 
